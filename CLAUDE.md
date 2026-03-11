@@ -49,6 +49,41 @@ public/
 └── assets/video/landing.mp4   # Landing hero 비디오 (Vite가 그대로 서빙)
 ```
 
+## Design System
+
+Primary color
+#61BA91
+
+Secondary color
+#EFF1C5
+
+White
+#FFFFFF
+
+Background
+#000000
+
+Secondary text
+#9CA3AF
+
+Transparency rule
+UI overlays and glass effects should use 20–30% opacity.
+
+Examples
+bg-[#61BA91]/20  
+bg-white/20  
+bg-black/30
+
+## Typography
+
+Primary font
+
+Orbitron
+https://fonts.google.com/specimen/Orbitron
+
+Use Orbitron for titles and headings.
+Body text should remain readable and minimal.
+
 ## Architecture
 
 - **라우팅**: React Router 없이 Zustand `currentPage` 상태로 페이지 전환. `App.tsx`에서 `AnimatePresence`로 페이지 트랜지션.
