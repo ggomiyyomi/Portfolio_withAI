@@ -1,8 +1,18 @@
 import { motion } from "framer-motion";
+import { useAppStore } from "@/store";
 
+/**
+ * Landing 페이지 컴포넌트
+ * 클릭 시 Home 페이지로 전환
+ */
 const LandingPage = () => {
+  const setCurrentPage = useAppStore((s) => s.setCurrentPage)
+
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-black hover:cursor-pointer">
+    <main
+      className="relative w-full h-screen overflow-hidden bg-black hover:cursor-pointer"
+      onClick={() => setCurrentPage('home')}
+    >
 
       {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
