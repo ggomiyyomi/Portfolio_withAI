@@ -113,7 +113,7 @@ const AboutSection = () => {
               데스크탑 레이아웃  (lg: 1024px~ / 1920×1080)
               절대 위치 기반 — 기존 Figma 디자인 유지
           ══════════════════════════════════════════════ */}
-          <div className="hidden lg:block" style={{ height: '700px' }}>
+          <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
 
             {/* 상단 좌측: Birth / Gender */}
             <div className="absolute top-8 left-8 flex flex-col gap-1 text-white text-xs z-20" style={orbitron}>

@@ -10,15 +10,15 @@ const ContactSection = () => {
     <section className="w-full min-h-screen bg-white flex flex-col justify-center items-center py-16 md:py-20 lg:py-24 px-6 md:px-10 lg:px-16 ">
 
       {/* ── 타이틀 영역 ── */}
-      <div className="flex items-end gap-3 md:gap-5 lg:gap-6">
+      <div className="flex flex-col items-start md:flex-row md:items-end gap-1 md:gap-5 lg:gap-6">
         <h2
-          className="font-extrabold text-[#61BA91] text-6xl md:text-8xl lg:text-[9rem] leading-none"
+          className="font-extrabold text-[#61BA91] text-6xl md:text-9xl lg:text-[10rem] leading-none"
           style={{ fontFamily: 'Orbitron, sans-serif' }}
         >
           CONTACT
         </h2>
         <span
-          className="font-bold text-[#61BA91] text-xl md:text-2xl lg:text-3xl pb-1 md:pb-2 lg:pb-4"
+          className="font-bold text-[#61BA91] text-xl md:text-3xl lg:text-4xl md:pb-2 lg:pb-4"
           style={{ fontFamily: 'Orbitron, sans-serif' }}
         >
           with me.
