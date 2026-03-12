@@ -1,0 +1,84 @@
+/**
+ * Contact 섹션 컴포넌트
+ * 흰 배경 + CONTACT with me 타이틀 + 이메일 + GitHub / Tistory 링크
+ */
+
+const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons'
+
+const ContactSection = () => {
+  return (
+    <section className="w-full min-h-screen bg-white flex flex-col justify-center items-center py-16 md:py-20 lg:py-24 px-6 md:px-10 lg:px-16 ">
+
+      {/* ── 타이틀 영역 ── */}
+      <div className="flex items-end gap-3 md:gap-5 lg:gap-6">
+        <h2
+          className="font-extrabold text-[#61BA91] text-6xl md:text-8xl lg:text-[9rem] leading-none"
+          style={{ fontFamily: 'Orbitron, sans-serif' }}
+        >
+          CONTACT
+        </h2>
+        <span
+          className="font-bold text-[#61BA91] text-xl md:text-2xl lg:text-3xl pb-1 md:pb-2 lg:pb-4"
+          style={{ fontFamily: 'Orbitron, sans-serif' }}
+        >
+          with me.
+        </span>
+      </div>
+
+      {/* ── 연락처 영역 ── */}
+      <div className="mt-14 md:mt-20 lg:mt-24 flex flex-col items-center gap-5 md:gap-10">
+
+        {/* 이메일 */}
+        <a
+          href="mailto:heejung9865@naver.com"
+          className="text-[#61BA91] text-sm md:text-base hover:opacity-70 transition-opacity"
+          style={{ fontFamily: 'Orbitron, sans-serif' }}
+        >
+          heejung9865@naver.com
+        </a>
+
+        {/* 링크 목록 */}
+        <div className="flex flex-col items-start gap-2 md:gap-5">
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/ggomiyyomi/Portfolio_withAI"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-800 hover:text-[#61BA91] transition-colors"
+          >
+            <img
+              src={`${DI}/github/github-original.svg`}
+              alt="GitHub"
+              className="w-5 h-5 md:w-6 md:h-6"
+            />
+            <span className="font-bold text-sm md:text-base" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              GITHUB
+            </span>
+          </a>
+
+          {/* Tistory */}
+          <a
+            href="https://doyiya24.tistory.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-800 hover:text-[#61BA91] transition-colors"
+          >
+            <img
+              src="/assets/icons/Tistoryicon.svg"
+              alt="Tistory"
+              className="w-5 h-5 md:w-6 md:h-6 shrink-0"
+            />
+            <span className="font-bold text-sm md:text-base" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              TISTORY
+            </span>
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+  )
+}
+
+export default ContactSection
