@@ -33,7 +33,7 @@ const profileBlurStyle = {
 
 const AboutSection = () => {
   return (
-    <section className="min-h-screen w-full bg-black flex items-center justify-center px-4 py-4">
+    <section className="min-h-screen w-full bg-black flex items-center justify-center px-6 py-4 md:px-10 md:py-8 lg:px-14 lg:py-12">
       <div className="max-w-350 w-full relative">
 
         {/* ── 메인 카드 ── */}
@@ -56,26 +56,26 @@ const AboutSection = () => {
               ─ 640px~1023px 태블릿 : sm: 확대 적용
               플로우 기반 — 절대위치 없음, 겹침 없음
           ══════════════════════════════════════════════ */}
-          <div className="lg:hidden flex flex-col justify-between h-140 sm:h-160 p-5 sm:p-8 relative z-10">
+          <div className="lg:hidden flex flex-col justify-between h-140 md:h-160 p-5 md:p-8 relative z-10">
 
             {/* ① 상단: Birth / Gender */}
-            <div className="flex flex-col gap-0.5 text-white text-[10px] sm:text-xs" style={orbitron}>
+            <div className="flex flex-col gap-0.5 text-white text-[10px] md:text-xs" style={orbitron}>
               <p><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
               <p><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
             </div>
 
             {/* ② 중앙: 텍스트 + 노트북 (좌/우 나란히) */}
-            <div className="flex items-center justify-between gap-4 sm:gap-6">
+            <div className="flex items-center justify-between gap-4 md:gap-6">
 
               {/* 텍스트 */}
               <div className="flex flex-col gap-2 min-w-0">
-                <p className="text-white text-xl sm:text-3xl" style={orbitron}>Hi, I am</p>
-                <p className="font-bold text-white text-5xl sm:text-7xl leading-none" style={orbitron}>LLM</p>
-                <div className="text-white space-y-1 sm:space-y-3 mt-1">
+                <p className="text-white text-xl md:text-3xl" style={orbitron}>Hi, I am</p>
+                <p className="font-bold text-white text-5xl md:text-7xl leading-none" style={orbitron}>LLM</p>
+                <div className="text-white space-y-1 md:space-y-3 mt-1">
                   {llmItems.map((item, i) => (
                     <div key={i}>
-                      <p className="text-[10px] sm:text-base font-bold">{item.letter} — {item.title}</p>
-                      <p className="hidden sm:block text-xs sm:text-sm text-white/60 mt-0.5">{item.desc}</p>
+                      <p className="text-[10px] md:text-base font-bold">{item.letter} — {item.title}</p>
+                      <p className="hidden md:block text-xs md:text-sm text-white/60 mt-0.5">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -84,7 +84,7 @@ const AboutSection = () => {
               {/* 3D 노트북 */}
               <img
                 alt="Laptop"
-                className="w-32 sm:w-60 h-auto shrink-0"
+                className="w-32 md:w-60 h-auto shrink-0"
                 src="/assets/images/3Dnotebook.png"
               />
 
@@ -94,13 +94,13 @@ const AboutSection = () => {
             <div className="flex justify-between items-end gap-2">
 
               {/* 하단 좌측 */}
-              <div className="flex flex-col gap-0.5 text-white text-[9px] sm:text-[11px] min-w-0" style={orbitron}>
+              <div className="flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] min-w-0" style={orbitron}>
                 <p><span className="text-[#61ba91]">Github ~ </span><span className="font-bold">ggomiyyomi</span></p>
                 <p><span className="text-[#61ba91]">Email ~ </span><span className="font-bold">heejung9865@naver.com</span></p>
               </div>
 
               {/* 하단 우측 */}
-              <div className="flex flex-col gap-0.5 text-white text-[9px] sm:text-[11px] text-right shrink-0" style={orbitron}>
+              <div className="flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] text-right shrink-0" style={orbitron}>
                 <p><span className="font-bold">Expected [08, 26]</span><span className="text-[#61ba91]"> ~ Education</span></p>
                 <p><span className="font-bold">Incheon, Korea</span><span className="text-[#61ba91]"> ~ Location</span></p>
               </div>
@@ -179,8 +179,8 @@ const AboutSection = () => {
         </div>
 
         {/* ── 네비게이션 바 ── */}
-        <div className="absolute -bottom-5 sm:-bottom-7 lg:-bottom-9 left-1/2 -translate-x-1/2 backdrop-blur-[25px] bg-[rgba(61,61,61,0.5)] rounded-full px-4 py-2 sm:px-7 sm:py-3 lg:px-12 lg:py-6 border border-black z-30">
-          <div className="flex font-bold items-center gap-3 sm:gap-5 lg:gap-8 text-[10px] sm:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
+        <div className="absolute -bottom-5 md:-bottom-7 lg:-bottom-9 left-1/2 -translate-x-1/2 backdrop-blur-[25px] bg-[rgba(61,61,61,0.5)] rounded-full px-4 py-2 md:px-7 md:py-3 lg:px-12 lg:py-6  z-30">
+          <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
             <div className="text-[#61ba91] cursor-pointer">Home</div>
             <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer">Projects</div>
             <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer">About</div>

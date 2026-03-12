@@ -113,7 +113,7 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white gap-15 md:gap-20 overflow-hidden"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white gap-15 md:gap-20 overflow-hidden py-16 md:py-20 lg:py-24"
     >
       {/* SKILLS 제목 */}
       <h2

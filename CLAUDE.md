@@ -84,6 +84,64 @@ https://fonts.google.com/specimen/Orbitron
 Use Orbitron for titles and headings.
 Body text should remain readable and minimal.
 
+## Responsive Design Rules
+
+The website must be fully responsive and optimized for three device ranges.
+
+Mobile
+320px – 767px
+
+Tablet
+768px – 1023px
+
+Desktop
+1024px and above
+
+### Tailwind Breakpoints
+
+Use Tailwind default breakpoints:
+
+sm → 640px  
+md → 768px  
+lg → 1024px  
+xl → 1280px  
+2xl → 1536px
+
+### Layout Guidelines
+
+Mobile (320–767px)
+
+- Single column layout
+- Text centered when necessary
+- Large tap targets
+- Reduced spacing
+- Image width: 100%
+- Section padding: `px-6 py-16`
+
+Tablet (768–1023px)
+
+- Two column layout allowed
+- Balanced spacing
+- Section padding: `px-10 py-20`
+
+Desktop (1024px+)
+
+- Full layout enabled
+- Multi-column grids
+- Larger typography
+- Section padding: `px-16 py-24`
+
+### Example Responsive Classes
+
+Use Tailwind responsive utilities:
+
+```tsx
+className="
+text-3xl
+md:text-4xl
+lg:text-6xl
+"
+
 ## Architecture
 
 - **라우팅**: React Router 없이 Zustand `currentPage` 상태로 페이지 전환. `App.tsx`에서 `AnimatePresence`로 페이지 트랜지션.
@@ -98,3 +156,4 @@ Body text should remain readable and minimal.
 - console.log 대신 logger 사용
 - 코드 생성 시 모듈화된 구조 유지
 - 모바일 반응형 필수
+```
