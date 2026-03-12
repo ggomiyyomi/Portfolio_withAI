@@ -58,12 +58,12 @@ const row2: Skill[] = [
 
 /** 스킬 아이콘 단일 아이템 */
 const SkillItem = ({ skill }: { skill: Skill }) => (
-  <div className="flex flex-col items-center gap-1.5 mx-4 flex-shrink-0">
-    <div className="w-30 h-30 flex items-center justify-center">
+  <div className="flex flex-col items-center gap-1.5 mx-2 md:mx-4 flex-shrink-0">
+    <div className="w-16 h-16 md:w-30 md:h-30 flex items-center justify-center">
       <img
         src={skill.icon}
         alt={skill.label}
-        className="w-20 h-20 object-contain"
+        className="w-10 h-10 md:w-20 md:h-20 object-contain"
         onError={(e) => {
           // 아이콘 로드 실패 시 첫 글자 표시
           const target = e.currentTarget
@@ -113,18 +113,18 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white gap-30 overflow-hidden"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white gap-15 md:gap-20 overflow-hidden"
     >
       {/* SKILLS 제목 */}
       <h2
-        className="text-3xl md:text-5xl font-bold tracking-[0.1em] text-white"
+        className="text-4xl md:text-5xl font-bold tracking-[0.1em] text-white"
         style={{ fontFamily: 'Orbitron, sans-serif' }}
       >
         SKILLS
       </h2>
 
       {/* 아이콘 스크롤 행 */}
-      <div className="w-full flex flex-col gap-16">
+      <div className="w-full flex flex-col gap-11 md:gap-16">
         <MarqueeRow skills={row1} />
         <MarqueeRow skills={row2} reverse />
       </div>

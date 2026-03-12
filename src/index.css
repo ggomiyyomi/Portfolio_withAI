@@ -15,6 +15,10 @@
   }
 }
 
+html, body {
+  min-width: 400px;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;

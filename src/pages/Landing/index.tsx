@@ -19,7 +19,7 @@ const LandingPage = () => {
 
         {/* Video */}
         <video
-          className="w-[65vw] max-w-full object-contain"
+          className="w-[90vw] sm:w-[65vw] max-w-full object-contain"
           src="/assets/video/landing.mp4"
           autoPlay
           loop
@@ -32,12 +32,12 @@ const LandingPage = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="mt-6 text-6xl md:text-7xl font-extrabold tracking-[0.25em]"
+          className="mt-6 text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-[0.25em]"
         >
           PORTFOLIO
         </motion.h1>
 
-        <p className="mt-2 text-lg text-white/60">
+        <p className="mt-2 text-sm sm:text-lg text-white/60">
           A space where ideas come to life
         </p>
 
