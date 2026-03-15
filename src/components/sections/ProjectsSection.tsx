@@ -160,7 +160,7 @@ const ProjectsSection = () => {
         <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
           <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
           <div className="text-[#61BA91] cursor-pointer">Projects</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer">About</div>
+          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
           <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer">Contact</div>
         </div>
       }

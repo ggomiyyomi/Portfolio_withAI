@@ -25,6 +25,8 @@ interface SectionCardProps {
   /** 카드 하단에 고정되는 네비게이션 바 */
   nav: ReactNode
   id?: string
+  /** true이면 프로필 이미지를 블러 없이 선명하게 표시 */
+  clearProfile?: boolean
 }
 
 /**
@@ -32,7 +34,7 @@ interface SectionCardProps {
  * children → 카드 내부 콘텐츠 (코너 정보 제외한 중앙 영역)
  * nav      → 카드 하단 네비게이션 바
  */
-const SectionCard = ({ children, nav, id }: SectionCardProps) => {
+const SectionCard = ({ children, nav, id, clearProfile = false }: SectionCardProps) => {
   return (
     <section
       id={id}
@@ -90,7 +92,7 @@ const SectionCard = ({ children, nav, id }: SectionCardProps) => {
             <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
           </div>
 
-          <ProfileBlur />
+          <ProfileBlur blurAmount={clearProfile ? 0 : 40} opacity={clearProfile ? 0.3 : 0.4} />
           {children}
         </div>
 
