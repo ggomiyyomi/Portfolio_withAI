@@ -8,6 +8,7 @@
  * - 하단 네비게이션 바 슬롯
  */
 import type { ReactNode } from 'react'
+import ProfileBlur from '@/components/ui/ProfileBlur'
 
 const cardBg = {
   backgroundImage: `
@@ -89,6 +90,7 @@ const SectionCard = ({ children, nav, id }: SectionCardProps) => {
             <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
           </div>
 
+          <ProfileBlur />
           {children}
         </div>
 

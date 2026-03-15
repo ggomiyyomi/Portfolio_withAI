@@ -18,13 +18,6 @@ const llmItems = [
 
 const orbitron = { fontFamily: 'Orbitron, sans-serif' }
 
-const profileBlurStyle = {
-  filter: 'blur(40px)',
-  backgroundImage: `url('/assets/images/Profile.JPG')`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-}
-
 const AboutSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
 
@@ -39,11 +32,6 @@ const AboutSection = () => {
         </div>
       }
     >
-
-      {/* 프로필 블러 배경 */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div className="w-60 h-72 lg:w-100 lg:h-125 rounded-[20px] opacity-40" style={profileBlurStyle} />
-      </div>
 
       {/* ══ 모바일 레이아웃 (< lg) ══ */}
       <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 p-5 md:p-8 pt-16 pb-16 relative z-10">

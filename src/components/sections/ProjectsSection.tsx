@@ -8,161 +8,140 @@
  *   lg: (1024px~)       : 1920×1080 데스크탑 — 절대 위치 기반 레이아웃
  */
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
 import { useAppStore } from '@/store'
 import SectionCard from '@/components/ui/SectionCard'
 
 const projects = [
-  { id: 0, name: 'CertificationBible', image: '/assets/images/CertificationBible.png' },
-  { id: 1, name: 'FakeHunters', image: '/assets/images/FakeHunters.png' },
-  { id: 2, name: 'Popspot(팝스팟)', image: '/assets/images/Popspot.png' },
+  { id: 0, name: 'CertificationBible', image: '/assets/images/CertificationBible.png', color: '#FFEDF0', imgScale: 1.8 },
+  { id: 1, name: 'FakeHunters',        image: '/assets/images/FakeHunters.png',        color: '#D2F1FB', imgScale: 1.7 },
+  { id: 2, name: 'Popspot(팝스팟)',    image: '/assets/images/Popspot.png',            color: '#D12AFE', imgScale: 1   },
 ]
 
 const orbitron = { fontFamily: 'Orbitron, sans-serif' }
 
+/** layoutId 애니메이션 타이밍 */
+const layoutTransition = { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const }
+
 type HoveredPos = 'left' | 'center' | 'right' | null
 
-/**
- * 캐러셀 카드 3장 렌더 (모바일/데스크탑 공용)
- */
-const CarouselCards = ({
-  left, center, right,
-  hoveredPos, setHoveredPos,
-  handleLeftClick, handleRightClick,
-  activeIndex, setActiveIndex,
-  gapClass,
-  centerWidth = '42%',
-  sideWidth = '22%',
-}: {
-  left: typeof projects[0]
-  center: typeof projects[0]
-  right: typeof projects[0]
-  hoveredPos: HoveredPos
-  setHoveredPos: (v: HoveredPos) => void
-  handleLeftClick: () => void
-  handleRightClick: () => void
+interface CarouselProps {
   activeIndex: number
   setActiveIndex: (i: number) => void
+  hoveredPos: HoveredPos
+  setHoveredPos: (v: HoveredPos) => void
   gapClass: string
   centerWidth?: string
   sideWidth?: string
-}) => (
-  <div className={`flex flex-col items-center w-full gap-4 md:gap-6`}>
-    <div className={`flex items-center justify-center w-full ${gapClass}`}>
+}
 
-      {/* 왼쪽 카드 */}
-      <motion.div
-        className="relative cursor-pointer rounded-2xl overflow-hidden flex-shrink-0"
-        style={{ width: sideWidth, aspectRatio: '3 / 4' }}
-        animate={{ opacity: 0.65, scale: 0.95 }}
-        whileHover={{ opacity: 0.85, scale: 0.97 }}
-        transition={{ duration: 0.3 }}
-        onClick={handleLeftClick}
-        onHoverStart={() => setHoveredPos('left')}
-        onHoverEnd={() => setHoveredPos(null)}
-      >
-        <img src={left.image} alt={left.name} className="w-full h-full object-cover rounded-2xl" />
-        <AnimatePresence>
-          {hoveredPos === 'left' && (
+/**
+ * 캐러셀 카드 3장 렌더 (모바일/데스크탑 공용)
+ * - layoutId 기반 위치·크기 애니메이션
+ * - 프로젝트별 배경색 + 이미지 기울기
+ * - overflow-hidden 래퍼로 뒤쪽 이동 차단
+ */
+const CarouselCards = ({
+  activeIndex,
+  setActiveIndex,
+  hoveredPos,
+  setHoveredPos,
+  gapClass,
+  centerWidth = '42%',
+  sideWidth = '22%',
+}: CarouselProps) => {
+  const len = projects.length
+  const leftIdx  = (activeIndex - 1 + len) % len
+  const rightIdx = (activeIndex + 1) % len
+
+  const cardConfigs = [
+    {
+      project: projects[leftIdx],
+      pos: 'left' as const,
+      width: sideWidth,
+      opacity: 0.7,
+      scale: 0.95,
+      hoverOpacity: 0.9,
+      hoverScale: 0.97,
+      boxShadow: 'none',
+      onClick: () => { setActiveIndex(leftIdx); setHoveredPos(null) },
+    },
+    {
+      project: projects[activeIndex],
+      pos: 'center' as const,
+      width: centerWidth,
+      opacity: 1,
+      scale: 1,
+      hoverOpacity: 1,
+      hoverScale: 1.02,
+      boxShadow: '0 0 50px rgba(255,255,255,0.25), 0 0 100px rgba(255,255,255,0.08)',
+      onClick: undefined,
+    },
+    {
+      project: projects[rightIdx],
+      pos: 'right' as const,
+      width: sideWidth,
+      opacity: 0.7,
+      scale: 0.95,
+      hoverOpacity: 0.9,
+      hoverScale: 0.97,
+      boxShadow: 'none',
+      onClick: () => { setActiveIndex(rightIdx); setHoveredPos(null) },
+    },
+  ]
+
+  return (
+    <LayoutGroup id={`carousel-${gapClass}`}>
+      {/* overflow-hidden 으로 애니메이션 중 카드가 영역 밖에 보이는 것 차단 */}
+      <div className="overflow-hidden w-full">
+        <div className={`flex items-center justify-center w-full ${gapClass}`}>
+          {cardConfigs.map(({ project, pos, width, opacity, scale, hoverOpacity, hoverScale, boxShadow, onClick }) => (
             <motion.div
-              key="left-overlay"
-              className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-2xl"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              key={project.id}
+              layoutId={`project-card-${project.id}`}
+              layout
+              transition={layoutTransition}
+              className="relative cursor-pointer rounded-2xl overflow-hidden shrink-0"
+              style={{ width, aspectRatio: '3 / 4', boxShadow, backgroundColor: project.color }}
+              animate={{ opacity, scale }}
+              whileHover={{ opacity: hoverOpacity, scale: hoverScale }}
+              onClick={onClick}
+              onHoverStart={() => setHoveredPos(pos)}
+              onHoverEnd={() => setHoveredPos(null)}
             >
-              <span className="text-white font-bold text-xs md:text-sm text-center px-2 leading-snug" style={orbitron}>
-                {left.name}
-              </span>
+              {/* 기울어진 이미지 — rotate(30deg) + scale로 카드를 꽉 채움 */}
+              <img
+                src={project.image}
+                alt={project.name}
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ transform: `rotate(-30deg) scale(${project.imgScale})`, transformOrigin: 'center' }}
+              />
+
+              {/* hover 오버레이 */}
+              <AnimatePresence>
+                {hoveredPos === pos && (
+                  <motion.div
+                    key={`overlay-${pos}`}
+                    className="absolute inset-0 bg-black/50 flex items-center justify-center"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <span
+                      className="text-white font-bold text-xs md:text-sm lg:text-base text-center px-3 leading-snug"
+                      style={orbitron}
+                    >
+                      {project.name}
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* 가운데 카드 (활성) */}
-      <motion.div
-        className="relative cursor-pointer rounded-2xl overflow-hidden flex-shrink-0"
-        style={{
-          width: centerWidth,
-          aspectRatio: '3 / 4',
-          boxShadow: '0 0 50px rgba(255,255,255,0.25), 0 0 100px rgba(255,255,255,0.08)',
-        }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-        onHoverStart={() => setHoveredPos('center')}
-        onHoverEnd={() => setHoveredPos(null)}
-      >
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={center.id}
-            src={center.image}
-            alt={center.name}
-            className="w-full h-full object-cover rounded-2xl"
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.35 }}
-          />
-        </AnimatePresence>
-        <AnimatePresence>
-          {hoveredPos === 'center' && (
-            <motion.div
-              key="center-overlay"
-              className="absolute inset-0 bg-black/45 flex items-center justify-center rounded-2xl"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="text-white font-bold text-sm md:text-lg lg:text-xl text-center px-4 leading-snug" style={orbitron}>
-                {center.name}
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* 오른쪽 카드 */}
-      <motion.div
-        className="relative cursor-pointer rounded-2xl overflow-hidden flex-shrink-0"
-        style={{ width: sideWidth, aspectRatio: '3 / 4' }}
-        animate={{ opacity: 0.65, scale: 0.95 }}
-        whileHover={{ opacity: 0.85, scale: 0.97 }}
-        transition={{ duration: 0.3 }}
-        onClick={handleRightClick}
-        onHoverStart={() => setHoveredPos('right')}
-        onHoverEnd={() => setHoveredPos(null)}
-      >
-        <img src={right.image} alt={right.name} className="w-full h-full object-cover rounded-2xl" />
-        <AnimatePresence>
-          {hoveredPos === 'right' && (
-            <motion.div
-              key="right-overlay"
-              className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-2xl"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="text-white font-bold text-xs md:text-sm text-center px-2 leading-snug" style={orbitron}>
-                {right.name}
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-    </div>
-
-    {/* 인디케이터 도트 */}
-    <div className="flex gap-2">
-      {projects.map((_, i) => (
-        <button
-          key={i}
-          onClick={() => setActiveIndex(i)}
-          className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-[#61BA91] w-5' : 'bg-white/40 w-2'}`}
-          aria-label={`Go to project ${i + 1}`}
-        />
-      ))}
-    </div>
-  </div>
-)
+          ))}
+        </div>
+      </div>
+    </LayoutGroup>
+  )
+}
 
 /**
  * Projects Showcase 캐러셀 섹션
@@ -172,17 +151,7 @@ const ProjectsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [hoveredPos, setHoveredPos] = useState<HoveredPos>(null)
 
-  const len = projects.length
-  const left = projects[(activeIndex - 1 + len) % len]
-  const center = projects[activeIndex]
-  const right = projects[(activeIndex + 1) % len]
-
-  /** 왼쪽 카드 클릭 */
-  const handleLeftClick = () => { setActiveIndex((p) => (p - 1 + len) % len); setHoveredPos(null) }
-  /** 오른쪽 카드 클릭 */
-  const handleRightClick = () => { setActiveIndex((p) => (p + 1) % len); setHoveredPos(null) }
-
-  const carouselProps = { left, center, right, hoveredPos, setHoveredPos, handleLeftClick, handleRightClick, activeIndex, setActiveIndex }
+  const carouselProps = { activeIndex, setActiveIndex, hoveredPos, setHoveredPos }
 
   return (
     <SectionCard
@@ -198,7 +167,7 @@ const ProjectsSection = () => {
     >
 
       {/* ══ 모바일 레이아웃 (< lg) ══ */}
-      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 p-5 md:p-8 pt-16 pb-16 gap-4 md:gap-6 relative z-10">
+      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-5 md:px-8 pt-16 pb-16 gap-4 md:gap-6 relative z-10">
         <p className="text-white font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
         <CarouselCards {...carouselProps} gapClass="gap-2 md:gap-3" />
       </div>
