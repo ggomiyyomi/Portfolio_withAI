@@ -4,6 +4,7 @@
  *
  * - dot-grid + glass 배경
  * - rounded-[50px] / backdrop-blur
+ * - 공통 코너 정보 (Birth, Gender, Github, Email, Location)
  * - 하단 네비게이션 바 슬롯
  */
 import type { ReactNode } from 'react'
@@ -16,6 +17,8 @@ const cardBg = {
   backgroundSize: '10px 10px, auto',
 }
 
+const orbitron = { fontFamily: 'Orbitron, sans-serif' }
+
 interface SectionCardProps {
   children: ReactNode
   /** 카드 하단에 고정되는 네비게이션 바 */
@@ -25,7 +28,7 @@ interface SectionCardProps {
 
 /**
  * 공통 카드 레이아웃 래퍼
- * children → 카드 내부 콘텐츠
+ * children → 카드 내부 콘텐츠 (코너 정보 제외한 중앙 영역)
  * nav      → 카드 하단 네비게이션 바
  */
 const SectionCard = ({ children, nav, id }: SectionCardProps) => {
@@ -41,6 +44,51 @@ const SectionCard = ({ children, nav, id }: SectionCardProps) => {
           className="relative backdrop-blur-[50px] rounded-[50px] overflow-hidden border border-black"
           style={cardBg}
         >
+
+          {/* ══ 모바일 코너 정보 (lg 미만) ══ */}
+          {/* 상단: Birth / Gender — children 위에 렌더되도록 z-10 */}
+          <div className="lg:hidden absolute top-5 left-5 flex flex-col gap-0.5 text-white text-[10px] md:text-xs z-10" style={orbitron}>
+            <p><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
+            <p><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
+          </div>
+
+          {/* 하단 좌: Github / Email */}
+          <div className="lg:hidden absolute bottom-5 left-5 flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] z-10" style={orbitron}>
+            <p><span className="text-[#61ba91]">Github ~ </span><span className="font-bold">ggomiyyomi</span></p>
+            <p><span className="text-[#61ba91]">Email ~ </span><span className="font-bold">heejung9865@naver.com</span></p>
+          </div>
+
+          {/* 하단 우: Education / Location */}
+          <div className="lg:hidden absolute bottom-5 right-5 flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] text-right z-10" style={orbitron}>
+            <p><span className="font-bold">Expected [08, 26]</span><span className="text-[#61ba91]"> ~ Education</span></p>
+            <p><span className="font-bold">Incheon, Korea</span><span className="text-[#61ba91]"> ~ Location</span></p>
+          </div>
+
+          {/* ══ 데스크탑 코너 정보 (lg 이상) ══ */}
+          {/* 상단 좌: Birth / Gender */}
+          <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-1 text-white text-xs z-20" style={orbitron}>
+            <p className="mb-0"><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
+            <p className="mb-0"><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
+          </div>
+
+          {/* 하단 우: Graduation / Location */}
+          <div className="hidden lg:flex absolute bottom-8 right-8 flex-col gap-1 text-white text-xs text-right z-20" style={orbitron}>
+            <p className="mb-0">
+              <span className="font-bold">Expected Graduation: [08, 26]</span>
+              <span className="text-[#61ba91]"> ~ Education</span>
+            </p>
+            <p className="mb-0">
+              <span className="font-bold">Incheon, Korea</span>
+              <span className="text-[#61ba91]"> ~ Location</span>
+            </p>
+          </div>
+
+          {/* 하단 좌: Github / Email */}
+          <div className="hidden lg:flex absolute bottom-8 left-8 flex-col gap-1 text-white text-xs z-20" style={orbitron}>
+            <p className="mb-0"><span className="text-[#61ba91]">Github ~ </span>ggomiyyomi</p>
+            <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
+          </div>
+
           {children}
         </div>
 

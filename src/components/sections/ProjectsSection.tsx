@@ -197,77 +197,19 @@ const ProjectsSection = () => {
       }
     >
 
-          {/* ══════════════════════════════════════════════
-              모바일 레이아웃  (< lg / 1024px 미만)
-              ─ 390×844 iPhone     : default
-              ─ 640px~1023px 태블릿 : sm: 확대 적용
-              플로우 기반 — 절대위치 없음, 겹침 없음
-          ══════════════════════════════════════════════ */}
-          <div className="lg:hidden flex flex-col justify-between h-140 md:h-160 p-5 md:p-8 relative z-10">
+      {/* ══ 모바일 레이아웃 (< lg) ══ */}
+      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 p-5 md:p-8 pt-16 pb-16 gap-4 md:gap-6 relative z-10">
+        <p className="text-white font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
+        <CarouselCards {...carouselProps} gapClass="gap-2 md:gap-3" />
+      </div>
 
-            {/* ① 상단: Birth / Gender */}
-            <div className="flex flex-col gap-0.5 text-white text-[10px] md:text-xs" style={orbitron}>
-              <p><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
-              <p><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
-            </div>
-
-            {/* ② 중앙: 타이틀 + 캐러셀 */}
-            <div className="flex flex-col items-center gap-4 md:gap-6">
-              <p className="text-white font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
-              <CarouselCards {...carouselProps} gapClass="gap-2 md:gap-3" />
-            </div>
-
-            {/* ③ 하단: 좌측 연락처 | 우측 위치 */}
-            <div className="flex justify-between items-end gap-2">
-              <div className="flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] min-w-0" style={orbitron}>
-                <p><span className="text-[#61ba91]">Github ~ </span><span className="font-bold">ggomiyyomi</span></p>
-                <p><span className="text-[#61ba91]">Email ~ </span><span className="font-bold">heejung9865@naver.com</span></p>
-              </div>
-              <div className="flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] text-right shrink-0" style={orbitron}>
-                <p><span className="font-bold">Expected [08, 26]</span><span className="text-[#61ba91]"> ~ Education</span></p>
-                <p><span className="font-bold">Incheon, Korea</span><span className="text-[#61ba91]"> ~ Location</span></p>
-              </div>
-            </div>
-
-          </div>
-
-          {/* ══════════════════════════════════════════════
-              데스크탑 레이아웃  (lg: 1024px~ / 1920×1080)
-              절대 위치 기반 — AboutSection과 동일 구조
-          ══════════════════════════════════════════════ */}
-          <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
-
-            {/* 상단 좌측: Birth / Gender */}
-            <div className="absolute top-8 left-8 flex flex-col gap-1 text-white text-xs z-20" style={orbitron}>
-              <p className="mb-0"><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
-              <p className="mb-0"><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
-            </div>
-
-            {/* 하단 우측: Graduation / Location */}
-            <div className="absolute bottom-8 right-8 flex flex-col gap-1 text-white text-xs text-right z-20" style={orbitron}>
-              <p className="mb-0">
-                <span className="font-bold">Expected Graduation: [08, 26]</span>
-                <span className="text-[#61ba91]"> ~ Education</span>
-              </p>
-              <p className="mb-0">
-                <span className="font-bold">Incheon, Korea</span>
-                <span className="text-[#61ba91]"> ~ Location</span>
-              </p>
-            </div>
-
-            {/* 하단 좌측: Github / Email */}
-            <div className="absolute bottom-8 left-8 flex flex-col gap-1 text-white text-xs z-20" style={orbitron}>
-              <p className="mb-0"><span className="text-[#61ba91]">Github ~ </span>ggomiyyomi</p>
-              <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
-            </div>
-
-            {/* 중앙 콘텐츠 */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-16 z-10">
-              <p className="text-white font-bold text-5xl" style={orbitron}>Projects Showcase</p>
-              <CarouselCards {...carouselProps} gapClass="gap-6" centerWidth="28%" sideWidth="16%" />
-            </div>
-
-          </div>
+      {/* ══ 데스크탑 레이아웃 (lg+) ══ */}
+      <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-16 z-10">
+          <p className="text-white font-bold text-5xl" style={orbitron}>Projects Showcase</p>
+          <CarouselCards {...carouselProps} gapClass="gap-6" centerWidth="28%" sideWidth="16%" />
+        </div>
+      </div>
 
     </SectionCard>
   )
