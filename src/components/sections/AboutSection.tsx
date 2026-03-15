@@ -7,6 +7,8 @@
  *   sm: (640px~1023px)  : 대형 모바일 / 태블릿 — 요소 크기 확대
  *   lg: (1024px~)       : 1920×1080 데스크탑 — 절대 위치 기반 레이아웃
  */
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useAppStore } from '@/store'
 import SectionCard from '@/components/ui/SectionCard'
 
@@ -20,6 +22,7 @@ const orbitron = { fontFamily: 'Orbitron, sans-serif' }
 
 const AboutSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
+  const [showProfile, setShowProfile] = useState(false)
 
   return (
     <SectionCard
@@ -51,8 +54,43 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* 3D 노트북 */}
-          <img alt="Laptop" className="w-32 md:w-60 h-auto shrink-0" src="/assets/images/3Dnotebook.png" />
+          {/* 3D 노트북 + 프로필 버튼 */}
+          <div className="flex flex-col items-center gap-3 shrink-0">
+            <div className="w-32 md:w-60 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {showProfile ? (
+                  <motion.img
+                    key="profile"
+                    src="/assets/images/Profile.JPG"
+                    alt="Profile"
+                    className="w-full h-auto rounded-2xl object-cover"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ) : (
+                  <motion.img
+                    key="laptop"
+                    alt="Laptop"
+                    className="w-full h-auto"
+                    src="/assets/images/3Dnotebook.png"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+            <button
+              onClick={() => setShowProfile(p => !p)}
+              className="px-3 py-1 text-[9px] md:text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+              style={orbitron}
+            >
+              {showProfile ? 'View Laptop' : 'View Profile'}
+            </button>
+          </div>
 
         </div>
       </div>
@@ -82,8 +120,41 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="absolute right-[8%] bottom-[15%] z-10">
-            <img alt="Laptop" className="w-90 h-auto" src="/assets/images/3Dnotebook.png" />
+          <div className="absolute right-[8%] bottom-[15%] z-10 flex flex-col items-center gap-3">
+            <div className="w-90 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {showProfile ? (
+                  <motion.img
+                    key="profile-desk"
+                    src="/assets/images/Profile.JPG"
+                    alt="Profile"
+                    className="w-75 h-auto rounded-2xl object-cover"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ) : (
+                  <motion.img
+                    key="laptop-desk"
+                    alt="Laptop"
+                    className="w-full h-auto"
+                    src="/assets/images/3Dnotebook.png"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+            <button
+              onClick={() => setShowProfile(p => !p)}
+              className="px-4 py-1.5 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+              style={orbitron}
+            >
+              {showProfile ? 'View Laptop' : 'View Profile'}
+            </button>
           </div>
 
         </div>
