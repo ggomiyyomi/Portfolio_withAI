@@ -92,13 +92,12 @@ const CarouselCards = ({
 
   return (
     <LayoutGroup id={`carousel-${gapClass}`}>
-      {/* overflow-hidden 으로 애니메이션 중 카드가 영역 밖에 보이는 것 차단 */}
       <div className="overflow-hidden w-full">
         <div className={`flex items-center justify-center w-full ${gapClass}`}>
           {cardConfigs.map(({ project, pos, width, opacity, scale, hoverOpacity, hoverScale, boxShadow, onClick }) => (
             <motion.div
               key={project.id}
-              layoutId={`project-card-${project.id}`}
+              layoutId={`project-card-${gapClass}-${project.id}`}
               layout
               transition={layoutTransition}
               className="relative cursor-pointer rounded-2xl overflow-hidden shrink-0"
@@ -109,7 +108,7 @@ const CarouselCards = ({
               onHoverStart={() => setHoveredPos(pos)}
               onHoverEnd={() => setHoveredPos(null)}
             >
-              {/* 기울어진 이미지 — rotate(30deg) + scale로 카드를 꽉 채움 */}
+              {/* 기울어진 이미지 */}
               <img
                 src={project.image}
                 alt={project.name}
@@ -127,7 +126,7 @@ const CarouselCards = ({
                     transition={{ duration: 0.2 }}
                   >
                     <span
-                      className="text-white font-bold text-xs md:text-sm lg:text-base text-center px-3 leading-snug"
+                      className="text-white font-bold text-xs md:text-sm lg:text-base text-center px-3 leading-snug truncate w-full"
                       style={orbitron}
                     >
                       {project.name}
@@ -167,16 +166,21 @@ const ProjectsSection = () => {
     >
 
       {/* ══ 모바일 레이아웃 (< lg) ══ */}
-      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-5 md:px-8 pt-16 pb-16 gap-4 md:gap-6 relative z-10">
+      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-5 md:px-8 pt-16 pb-16 gap-8 md:gap-10 relative z-10">
         <p className="text-white font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
-        <CarouselCards {...carouselProps} gapClass="gap-2 md:gap-3" />
+        <div className="md:hidden w-full">
+          <CarouselCards {...carouselProps} gapClass="gap-2" centerWidth="38%" sideWidth="22%" />
+        </div>
+        <div className="hidden md:block w-full">
+          <CarouselCards {...carouselProps} gapClass="gap-3" centerWidth="30%" sideWidth="18%" />
+        </div>
       </div>
 
       {/* ══ 데스크탑 레이아웃 (lg+) ══ */}
       <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-16 z-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-20 px-16 z-10">
           <p className="text-white font-bold text-5xl" style={orbitron}>Projects Showcase</p>
-          <CarouselCards {...carouselProps} gapClass="gap-6" centerWidth="28%" sideWidth="16%" />
+          <CarouselCards {...carouselProps} gapClass="gap-6" centerWidth="22%" sideWidth="16%" />
         </div>
       </div>
 
