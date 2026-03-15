@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import LandingPage from '@/pages/Landing'
 import HomePage from '@/pages/Home'
+import ProjectsPage from '@/pages/Projects'
 import { useAppStore } from '@/store'
 
 /**
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <AnimatePresence mode="wait">
-      {currentPage === 'landing' ? (
+      {currentPage === 'landing' && (
         <motion.div
           key="landing"
           initial={{ opacity: 0 }}
@@ -22,7 +23,8 @@ function App() {
         >
           <LandingPage />
         </motion.div>
-      ) : (
+      )}
+      {currentPage === 'home' && (
         <motion.div
           key="home"
           initial={{ opacity: 0 }}
@@ -31,6 +33,17 @@ function App() {
           transition={{ duration: 0.5 }}
         >
           <HomePage />
+        </motion.div>
+      )}
+      {currentPage === 'projects' && (
+        <motion.div
+          key="projects"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <ProjectsPage />
         </motion.div>
       )}
     </AnimatePresence>
