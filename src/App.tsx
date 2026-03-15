@@ -3,6 +3,7 @@ import LandingPage from '@/pages/Landing'
 import HomePage from '@/pages/Home'
 import ProjectsPage from '@/pages/Projects'
 import AboutPage from '@/pages/About'
+import ContactPage from '@/pages/Contact'
 import { useAppStore } from '@/store'
 
 /**
@@ -56,6 +57,17 @@ function App() {
           transition={{ duration: 0.5 }}
         >
           <AboutPage />
+        </motion.div>
+      )}
+      {currentPage === 'contact' && (
+        <motion.div
+          key="contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <ContactPage />
         </motion.div>
       )}
     </AnimatePresence>

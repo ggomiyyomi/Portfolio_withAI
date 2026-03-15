@@ -161,7 +161,7 @@ const ProjectsSection = () => {
           <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
           <div className="text-[#61BA91] cursor-pointer">Projects</div>
           <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer">Contact</div>
+          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
         </div>
       }
     >
