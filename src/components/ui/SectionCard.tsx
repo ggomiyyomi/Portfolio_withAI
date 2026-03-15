@@ -27,6 +27,8 @@ interface SectionCardProps {
   id?: string
   /** true이면 프로필 이미지를 블러 없이 선명하게 표시 */
   clearProfile?: boolean
+  /** 프로필 이미지 불투명도 (기본값: clearProfile ? 0.3 : 0.4) */
+  profileOpacity?: number
 }
 
 /**
@@ -34,7 +36,8 @@ interface SectionCardProps {
  * children → 카드 내부 콘텐츠 (코너 정보 제외한 중앙 영역)
  * nav      → 카드 하단 네비게이션 바
  */
-const SectionCard = ({ children, nav, id, clearProfile = false }: SectionCardProps) => {
+const SectionCard = ({ children, nav, id, clearProfile = false, profileOpacity }: SectionCardProps) => {
+  const resolvedOpacity = profileOpacity ?? (clearProfile ? 0.3 : 0.4)
   return (
     <section
       id={id}
@@ -92,7 +95,7 @@ const SectionCard = ({ children, nav, id, clearProfile = false }: SectionCardPro
             <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
           </div>
 
-          <ProfileBlur blurAmount={clearProfile ? 0 : 40} opacity={clearProfile ? 0.3 : 0.4} />
+          <ProfileBlur blurAmount={clearProfile ? 0 : 40} opacity={resolvedOpacity} />
           {children}
         </div>
 

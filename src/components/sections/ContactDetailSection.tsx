@@ -20,9 +20,13 @@ const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  as string
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string
 const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  as string
 
-/** 반투명 입력 필드 공통 스타일 */
-const inputClass =
-  'w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white text-xs md:text-sm placeholder:text-white/40 focus:outline-none focus:border-[#61BA91] transition-colors'
+/** Name/Email 필드 스타일 — 알약형 */
+const pillInputClass =
+  'w-full bg-[rgba(180,180,180,0.35)] h-7 md:h-9 rounded-full px-3 text-[10px] md:text-xs text-white placeholder:text-white/70 focus:outline-none'
+
+/** Message 필드 스타일 — 둥근 사각형 */
+const messageClass =
+  'w-full bg-[rgba(100,100,100,0.45)] h-20 md:h-32 lg:h-48 rounded-[10px] md:rounded-[14px] px-3 md:px-4 py-2 md:py-3 text-[10px] md:text-xs text-white placeholder:text-white/70 focus:outline-none resize-none'
 
 const ContactDetailSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
@@ -62,16 +66,16 @@ const ContactDetailSection = () => {
   /** 좌측: 타이틀 + 프로필 정보 */
   const leftContent = (
     <div className="flex flex-col gap-4 md:gap-6">
-      <h2 className="text-white font-bold text-3xl md:text-4xl lg:text-5xl" style={orbitron}>
+      <h2 className="text-white font-bold text-xl md:text-3xl lg:text-5xl" style={orbitron}>
         Contact ME
       </h2>
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 border border-white/20">
+      <div className="flex items-center gap-2 md:gap-3">
+        <div className="w-9 h-9 md:w-12 md:h-12 lg:w-20 lg:h-20 rounded-full overflow-hidden shrink-0 border-2 border-[#61BA91]">
           <img src="/assets/images/Profile.JPG" alt="Profile" className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col gap-0.5" style={orbitron}>
-          <p className="text-[#61BA91] font-bold text-xs md:text-sm">Hee-Jeong Seo</p>
-          <p className="text-white/60 text-[10px] md:text-xs">heejung9865@naver.com</p>
+          <p className="text-[#61BA91] font-bold text-[10px] md:text-xs lg:text-base">Hee-Jeong Seo</p>
+          <p className="text-white/60 text-[9px] md:text-[10px] lg:text-sm">heejung9965@naver.com</p>
         </div>
       </div>
     </div>
@@ -79,7 +83,7 @@ const ContactDetailSection = () => {
 
   /** 우측: 이메일 폼 */
   const rightContent = (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:gap-3 w-full">
+    <form onSubmit={handleSubmit} className="bg-white/5 rounded-[20px] p-5 flex flex-col gap-3 w-full">
       <input
         name="name"
         type="text"
@@ -87,7 +91,8 @@ const ContactDetailSection = () => {
         required
         value={formData.name}
         onChange={handleChange}
-        className={inputClass}
+        className={pillInputClass}
+        style={orbitron}
       />
       <input
         name="email"
@@ -96,46 +101,49 @@ const ContactDetailSection = () => {
         required
         value={formData.email}
         onChange={handleChange}
-        className={inputClass}
+        className={pillInputClass}
+        style={orbitron}
       />
       <textarea
         name="message"
         placeholder="Message"
         required
-        rows={4}
         value={formData.message}
         onChange={handleChange}
-        className={`${inputClass} resize-none`}
-      />
-      <button
-        type="submit"
-        disabled={status === 'sending'}
-        className="self-end mt-1 px-5 py-2 bg-[#61BA91] text-black font-bold text-xs md:text-sm rounded-lg hover:bg-[#4fa07a] transition-colors disabled:opacity-50 cursor-pointer"
+        className={messageClass}
         style={orbitron}
-      >
-        {status === 'sending' ? '전송 중...' : '이메일 전송'}
-      </button>
-      {status === 'success' && <p className="text-[#61BA91] text-xs text-right">이메일이 전송되었습니다!</p>}
-      {status === 'error'   && <p className="text-red-400 text-xs text-right">전송에 실패했습니다. 다시 시도해주세요.</p>}
+      />
+      <div className="flex flex-col items-center gap-1 mt-1">
+        <button
+          type="submit"
+          disabled={status === 'sending'}
+          className="w-28 h-7 md:w-36 md:h-8 bg-[#61BA91] text-white font-bold text-[10px] md:text-xs rounded-full hover:bg-[#4fa07a] transition-colors disabled:opacity-50 cursor-pointer"
+          style={orbitron}
+        >
+          {status === 'sending' ? '전송 중...' : '이메일 전송'}
+        </button>
+        {status === 'success' && <p className="text-[#61BA91] text-xs">이메일이 전송되었습니다!</p>}
+        {status === 'error'   && <p className="text-red-400 text-xs">전송에 실패했습니다. 다시 시도해주세요.</p>}
+      </div>
     </form>
   )
 
   return (
-    <SectionCard nav={nav} clearProfile>
+    <SectionCard nav={nav} profileOpacity={0.7}>
 
       {/* ══ 모바일 레이아웃 (< lg) ══ */}
-      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-6 md:px-10 pt-14 pb-14 gap-6 relative z-10">
+      <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-6 md:px-10 pt-14 pb-14 gap-5 md:gap-8 relative z-10">
         {leftContent}
-        {rightContent}
+        <div className="w-full md:w-96">{rightContent}</div>
       </div>
 
       {/* ══ 데스크탑 레이아웃 (lg+) ══ */}
       <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
-        <div className="absolute inset-0 flex items-center justify-center z-10 px-20 gap-16 xl:gap-24">
+        <div className="absolute inset-0 flex items-center justify-center z-10 px-20 gap-20">
           {/* 좌측 */}
-          <div className="flex-1">{leftContent}</div>
+          <div>{leftContent}</div>
           {/* 우측 */}
-          <div className="flex-1 max-w-sm xl:max-w-md">{rightContent}</div>
+          <div className="w-80 xl:w-90">{rightContent}</div>
         </div>
       </div>
 
