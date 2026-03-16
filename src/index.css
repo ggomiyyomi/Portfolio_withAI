@@ -32,4 +32,28 @@ html, body {
     margin: 0;
     padding: 0;
   }
+
+  /* 스크롤바: 트랙 투명, 썸만 표시 */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(97, 186, 145, 0.5);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(97, 186, 145, 0.85);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(97, 186, 145, 0.5) transparent;
+  }
 }

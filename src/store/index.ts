@@ -5,7 +5,7 @@
 import { create } from 'zustand'
 
 interface AppState {
-  currentPage: 'landing' | 'home' | 'projects' | 'about' | 'contact'
+  currentPage: 'landing' | 'home' | 'projects' | 'about' | 'contact' | 'certificationBible'
   setCurrentPage: (page: AppState['currentPage']) => void
 }
 

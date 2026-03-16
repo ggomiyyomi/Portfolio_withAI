@@ -13,9 +13,9 @@ import { useAppStore } from '@/store'
 import SectionCard from '@/components/ui/SectionCard'
 
 const projects = [
-  { id: 0, name: 'CertificationBible', image: '/assets/images/CertificationBible.png', color: '#FFEDF0', imgScale: 1.8 },
-  { id: 1, name: 'FakeHunters',        image: '/assets/images/FakeHunters.png',        color: '#D2F1FB', imgScale: 1.7 },
-  { id: 2, name: 'Popspot(팝스팟)',    image: '/assets/images/Popspot.png',            color: '#D12AFE', imgScale: 1   },
+  { id: 0, name: 'CertificationBible', image: '/assets/images/CertificationBible.png', color: '#FFEDF0', imgScale: 1.8, page: 'certificationBible' as const },
+  { id: 1, name: 'FakeHunters',        image: '/assets/images/FakeHunters.png',        color: '#D2F1FB', imgScale: 1.7, page: null },
+  { id: 2, name: 'Popspot(팝스팟)',    image: '/assets/images/Popspot.png',            color: '#D12AFE', imgScale: 1,   page: null },
 ]
 
 const orbitron = { fontFamily: 'Orbitron, sans-serif' }
@@ -30,6 +30,7 @@ interface CarouselProps {
   setActiveIndex: (i: number) => void
   hoveredPos: HoveredPos
   setHoveredPos: (v: HoveredPos) => void
+  setCurrentPage: (page: 'certificationBible' | 'home' | 'projects' | 'about' | 'contact' | 'landing') => void
   gapClass: string
   centerWidth?: string
   sideWidth?: string
@@ -46,6 +47,7 @@ const CarouselCards = ({
   setActiveIndex,
   hoveredPos,
   setHoveredPos,
+  setCurrentPage,
   gapClass,
   centerWidth = '42%',
   sideWidth = '22%',
@@ -75,7 +77,7 @@ const CarouselCards = ({
       hoverOpacity: 1,
       hoverScale: 1.02,
       boxShadow: '0 0 50px rgba(255,255,255,0.25), 0 0 100px rgba(255,255,255,0.08)',
-      onClick: undefined,
+      onClick: projects[activeIndex].page ? () => setCurrentPage(projects[activeIndex].page!) : undefined,
     },
     {
       project: projects[rightIdx],
@@ -150,7 +152,7 @@ const ProjectsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [hoveredPos, setHoveredPos] = useState<HoveredPos>(null)
 
-  const carouselProps = { activeIndex, setActiveIndex, hoveredPos, setHoveredPos }
+  const carouselProps = { activeIndex, setActiveIndex, hoveredPos, setHoveredPos, setCurrentPage }
 
   return (
     <SectionCard

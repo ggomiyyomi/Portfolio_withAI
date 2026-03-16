@@ -4,6 +4,7 @@ import HomePage from '@/pages/Home'
 import ProjectsPage from '@/pages/Projects'
 import AboutPage from '@/pages/About'
 import ContactPage from '@/pages/Contact'
+import CertificationBiblePage from '@/pages/CertificationBible'
 import { useAppStore } from '@/store'
 
 /**
@@ -68,6 +69,17 @@ function App() {
           transition={{ duration: 0.5 }}
         >
           <ContactPage />
+        </motion.div>
+      )}
+      {currentPage === 'certificationBible' && (
+        <motion.div
+          key="certificationBible"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <CertificationBiblePage />
         </motion.div>
       )}
     </AnimatePresence>
