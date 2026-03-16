@@ -149,7 +149,8 @@ const CarouselCards = ({
  */
 const ProjectsSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
-  const [activeIndex, setActiveIndex] = useState(0)
+  const activeIndex = useAppStore((s) => s.projectsActiveIndex)
+  const setActiveIndex = useAppStore((s) => s.setProjectsActiveIndex)
   const [hoveredPos, setHoveredPos] = useState<HoveredPos>(null)
 
   const carouselProps = { activeIndex, setActiveIndex, hoveredPos, setHoveredPos, setCurrentPage }
