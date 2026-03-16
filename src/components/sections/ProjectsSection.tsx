@@ -14,7 +14,7 @@ import SectionCard from '@/components/ui/SectionCard'
 
 const projects = [
   { id: 0, name: 'CertificationBible', image: '/assets/images/CertificationBible.png', color: '#FFEDF0', imgScale: 1.8, page: 'certificationBible' as const },
-  { id: 1, name: 'FakeHunters',        image: '/assets/images/FakeHunters.png',        color: '#D2F1FB', imgScale: 1.7, page: null },
+  { id: 1, name: 'FakeHunters',        image: '/assets/images/FakeHunters.png',        color: '#D2F1FB', imgScale: 1.7, page: 'fakeHunters' as const },
   { id: 2, name: 'Popspot(팝스팟)',    image: '/assets/images/Popspot.png',            color: '#D12AFE', imgScale: 1,   page: 'popspot' as const },
 ]
 
@@ -30,7 +30,7 @@ interface CarouselProps {
   setActiveIndex: (i: number) => void
   hoveredPos: HoveredPos
   setHoveredPos: (v: HoveredPos) => void
-  setCurrentPage: (page: 'certificationBible' | 'popspot' | 'home' | 'projects' | 'about' | 'contact' | 'landing') => void
+  setCurrentPage: (page: 'certificationBible' | 'popspot' | 'fakeHunters' | 'home' | 'projects' | 'about' | 'contact' | 'landing') => void
   gapClass: string
   centerWidth?: string
   sideWidth?: string

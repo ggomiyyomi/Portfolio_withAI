@@ -1,6 +1,6 @@
 /**
- * Popspot 프로젝트 상세 섹션
- * Projects 캐러셀에서 Popspot 카드 클릭 시 표시
+ * FakeHunters 프로젝트 상세 섹션
+ * Projects 캐러셀에서 FakeHunters 카드 클릭 시 표시
  */
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -10,12 +10,12 @@ import SectionCard from '@/components/ui/SectionCard'
 const orbitron = { fontFamily: 'Orbitron, sans-serif' }
 
 const description = [
-  '팝업스토어 정보 검색, 결제, 예약 및 커뮤니티 AI 서비스 전반 기획',
-  'WebSocket 기반 실시간 채팅 기능 설계 및 구현',
-  '채팅 UI/UX 개선 및 사용자 경험 중심의 인터랙션 추가',
-  'Redis를 활용한 데이터 처리 및 성능 개선 구조 설계',
-  'Jira를 활용한 일정 관리 및 기능 우선순위 조정',
-  '서비스 시연 영상 제작 및 발표용 PPT 자료 구성',
+  '딥페이크 탐지 파이프라인 설계 및 End-to-End 분석 구조 구축',
+  '데이터셋 기반 모델 학습 및 시각화 적용',
+  'AI 서버–백엔드–프론트엔드 연동 구조 설계',
+  '대용량·시간 소요 분석을 위한 비동기 Polling 시스템 구현',
+  '분석 결과 시각화 UI 설계 및 사용자 중심 화면 구성',
+  '멀티모달 결과 AI 통합 리포트 화면 개발',
 ]
 
 const detailButtons = ['기술 스택', '담당 업무', '트러블슈팅', '발표 자료'] as const
@@ -53,7 +53,7 @@ const ComingSoonModal = ({ label, onClose }: { label: DetailButton; onClose: () 
   </AnimatePresence>
 )
 
-const PopspotSection = () => {
+const FakeHuntersSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
   const [activeModal, setActiveModal] = useState<DetailButton | null>(null)
 
@@ -91,26 +91,29 @@ const PopspotSection = () => {
 
             {/* 이미지 (View GITHUB 오버레이 포함) + 날짜 */}
             <div className="flex flex-col items-center gap-2 shrink-0">
-              <div className="relative w-36 md:w-52 bg-[#D12AFE]/20 rounded-2xl overflow-hidden aspect-[3/4]">
+              <div className="relative w-36 md:w-52 bg-[#D2F1FB] rounded-2xl overflow-hidden aspect-[3/4]">
                 <img
-                  src="/assets/images/Popspot.png"
-                  alt="Popspot"
+                  src="/assets/images/FakeHunters.png"
+                  alt="FakeHunters"
                   className="w-full h-full object-contain"
-                  style={{ transform: 'rotate(-30deg) scale(1)', transformOrigin: 'center' }}
+                  style={{ transform: 'rotate(-30deg) scale(1.7)', transformOrigin: 'center' }}
                 />
-                <a href="https://github.com/2025-MSA-FINAL" target="_blank" rel="noreferrer"
+                <a href="https://github.com/2026-PoC-AI" target="_blank" rel="noreferrer"
                   className="group absolute inset-0 flex items-center justify-center bg-black/50 hover:bg-black/65 transition-colors cursor-pointer"
                   style={orbitron}>
                   <span className="px-3 py-1.5 text-[9px] md:text-[11px] font-extrabold rounded-full border-2 border-white text-white bg-black/70 group-hover:bg-white group-hover:text-black transition-colors duration-200">View GITHUB</span>
                 </a>
               </div>
-              <p className="font-bold text-[#EFF1C5]/60 text-[9px] md:text-xs" style={orbitron}>2025.10.20 ~ 2025.12.31</p>
+              <p className="font-bold text-[#EFF1C5]/60 text-[9px] md:text-xs" style={orbitron}>2026.01.06 ~ 2026.01.29</p>
             </div>
 
             {/* 텍스트 */}
             <div className="flex flex-col gap-3 w-full">
-              <h2 className="text-white font-bold text-lg md:text-2xl" style={orbitron}>POPSPOT(팝스팟)</h2>
-              <p className="text-white text-[10px] md:text-xs font-bold">팝업스토어 정보검색, 커뮤니티 및 실시간 채팅 기능을 제공하는 웹 플랫폼</p>
+              <h2 className="text-white font-bold text-lg md:text-2xl" style={orbitron}>FAKE HUNTERS</h2>
+              <p className="text-white text-[10px] md:text-xs font-bold">
+                AI 기반 멀티모달 딥페이크 탐지 웹 플랫폼<br />
+                — 영상·이미지·음성·텍스트 딥페이크를 통합 분석을 통해 신뢰 가능한 판별 결과와 시각화 리포트를 제공하는 웹 서비스 구축
+              </p>
               <ul className="text-[#EFF1C5]/70 text-[10px] md:text-xs space-y-1.5 mt-1">
                 {description.map((item, i) => (
                   <li key={i} className="flex gap-2"><span className="text-[#EFF1C5] shrink-0">—</span>{item}</li>
@@ -151,26 +154,29 @@ const PopspotSection = () => {
 
             {/* 좌측: 이미지 (View GITHUB 오버레이 포함) + 날짜 */}
             <div className="flex flex-col items-center gap-3 shrink-0">
-              <div className="relative w-44 xl:w-56 bg-[#D12AFE]/20 rounded-2xl overflow-hidden aspect-[3/4]">
+              <div className="relative w-44 xl:w-56 bg-[#D2F1FB] rounded-2xl overflow-hidden aspect-[3/4]">
                 <img
-                  src="/assets/images/Popspot.png"
-                  alt="Popspot"
+                  src="/assets/images/FakeHunters.png"
+                  alt="FakeHunters"
                   className="w-full h-full object-contain"
-                  style={{ transform: 'rotate(-30deg) scale(1)', transformOrigin: 'center' }}
+                  style={{ transform: 'rotate(-30deg) scale(1.7)', transformOrigin: 'center' }}
                 />
-                <a href="https://github.com/2025-MSA-FINAL" target="_blank" rel="noreferrer"
+                <a href="https://github.com/2026-PoC-AI" target="_blank" rel="noreferrer"
                   className="group absolute inset-0 flex items-center justify-center bg-black/50 hover:bg-black/65 transition-colors cursor-pointer"
                   style={orbitron}>
                   <span className="px-4 py-2 text-xs font-extrabold rounded-full border-2 border-white text-white bg-black/70 group-hover:bg-white group-hover:text-black transition-colors duration-200">View GITHUB</span>
                 </a>
               </div>
-              <p className="text-[#EFF1C5]/60 text-xs font-bold" style={orbitron}>2025.10.20 ~ 2025.12.31</p>
+              <p className="text-[#EFF1C5]/60 text-xs font-bold" style={orbitron}>2026.01.06 ~ 2026.01.29</p>
             </div>
 
             {/* 우측: 제목 + 설명 + 상세 버튼 */}
             <div className="flex flex-col gap-4 flex-1 max-w-lg xl:max-w-xl">
-              <h2 className="text-white font-bold text-2xl xl:text-4xl" style={orbitron}>POPSPOT(팝스팟)</h2>
-              <p className="text-white text-sm xl:text-base font-bold">팝업스토어 정보검색, 커뮤니티 및 실시간 채팅 기능을 제공하는 웹 플랫폼</p>
+              <h2 className="text-white font-bold text-2xl xl:text-4xl" style={orbitron}>FAKE HUNTERS</h2>
+              <p className="text-white text-sm xl:text-base font-bold">
+                AI 기반 멀티모달 딥페이크 탐지 웹 플랫폼<br />
+                — 영상·이미지·음성·텍스트 딥페이크를 통합 분석을 통해 신뢰 가능한 판별 결과와 시각화 리포트를 제공하는 웹 서비스 구축
+              </p>
               <ul className="text-[#EFF1C5]/70 text-sm xl:text-base space-y-2">
                 {description.map((item, i) => (
                   <li key={i} className="flex gap-2"><span className="text-[#EFF1C5] shrink-0">—</span>{item}</li>
@@ -199,4 +205,4 @@ const PopspotSection = () => {
   )
 }
 
-export default PopspotSection
+export default FakeHuntersSection

@@ -6,6 +6,7 @@ import AboutPage from '@/pages/About'
 import ContactPage from '@/pages/Contact'
 import CertificationBiblePage from '@/pages/CertificationBible'
 import PopspotPage from '@/pages/Popspot'
+import FakeHuntersPage from '@/pages/FakeHunters'
 import { useAppStore } from '@/store'
 
 /**
@@ -92,6 +93,17 @@ function App() {
           transition={{ duration: 0.5 }}
         >
           <PopspotPage />
+        </motion.div>
+      )}
+      {currentPage === 'fakeHunters' && (
+        <motion.div
+          key="fakeHunters"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <FakeHuntersPage />
         </motion.div>
       )}
     </AnimatePresence>
