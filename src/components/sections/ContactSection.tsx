@@ -42,7 +42,7 @@ const ContactSection = () => {
 
           {/* GitHub */}
           <a
-            href="https://github.com/ggomiyyomi/Portfolio_withAI"
+            href="https://github.com/ggomiyyomi"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-800 hover:text-[#61BA91] transition-colors"
