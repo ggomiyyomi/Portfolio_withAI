@@ -9,48 +9,257 @@ import SectionCard from '@/components/ui/SectionCard'
 
 const orbitron = { fontFamily: 'Orbitron, sans-serif' }
 
-const description = [
-  'JSP와 Servlet을 활용한 MVC 기반 웹 서비스 구조 설계 및 구현',
-  '공지사항, 회원 관리, 게시글 관리 기능을 포함한 관리자 페이지 개발',
-  'Ajax를 활용한 비동기 처리로 사용자 인터랙션 개선',
-  'Oracle DB와 연동하여 데이터 CRUD 기능 구현',
-  'GitHub를 활용한 형상관리 및 기능 단위 브랜치 관리로 팀 협업 진행',
-]
+const projectInfo = {
+  purpose: '흩어진 자격증 정보를 한눈에 확인하고 스터디 모임에 참여할 수 있는 통합 플랫폼 구축',
+  goals: [
+    'JSP/Servlet MVC 구조 기반 풀스택 웹 서비스 설계',
+    '공공데이터 API 연동으로 자격증 데이터 통합 관리',
+    '직관적인 UI와 비동기 처리로 사용자 경험 개선',
+  ],
+  achievements: [
+    'Ajax 비동기 처리 적용으로 페이지 리로드 제거 및 사용자 인터랙션 속도 개선',
+    '공공데이터 API 연동으로 다수의 자격증 데이터 자동 수집 및 통합 관리',
+    'Git 기반 5인 협업 수행 및 충돌 최소화',
+  ],
+}
 
 const detailButtons = ['기술 스택', '담당 업무', '트러블슈팅', '발표 자료'] as const
 type DetailButton = typeof detailButtons[number]
 
-/** 곧 업데이트 예정 모달 */
-const ComingSoonModal = ({ label, onClose }: { label: DetailButton; onClose: () => void }) => (
-  <AnimatePresence>
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
+const d = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons'
+
+const techStack = [
+  {
+    label: 'Back End',
+    items: [
+      { name: 'Java 11', logo: `${d}/java/java-original.svg` },
+      { name: 'Servlet', logo: `${d}/java/java-original.svg` },
+      { name: 'JSP', logo: `${d}/java/java-original.svg` },
+    ],
+  },
+  {
+    label: 'Front End',
+    items: [
+      { name: 'HTML5', logo: `${d}/html5/html5-original.svg` },
+      { name: 'CSS3', logo: `${d}/css3/css3-original.svg` },
+      { name: 'JavaScript', logo: `${d}/javascript/javascript-original.svg` },
+      { name: 'jQuery', logo: `${d}/jquery/jquery-original.svg` },
+      { name: 'Bootstrap', logo: `${d}/bootstrap/bootstrap-original.svg` },
+    ],
+  },
+  {
+    label: 'Server / DB',
+    items: [
+      { name: 'Tomcat 10.1', logo: `${d}/tomcat/tomcat-original.svg` },
+      { name: 'Oracle 21c', logo: `${d}/oracle/oracle-original.svg` },
+    ],
+  },
+  {
+    label: '협업 / 디자인',
+    items: [
+      { name: 'Git', logo: `${d}/git/git-original.svg` },
+      { name: 'GitHub', logo: `${d}/github/github-original.svg`, invert: true },
+      { name: 'Figma', logo: `${d}/figma/figma-original.svg` },
+      { name: 'Notion', logo: 'https://cdn.simpleicons.org/notion/ffffff' },
+    ],
+  },
+]
+
+const myTasks = [
+  '관리자 페이지 기능 설계 및 개발',
+  '회원 · 게시글 · 공지사항 관리 기능 CRUD 및 Ajax 기반 비동기 처리로 사용자 인터랙션 개선',
+  '관리자 통계 화면 구성 및 API/DB 연동을 통한 데이터 시각화 처리',
+]
+
+const troubleshooting = {
+  title: '쿠키 초기화 시 로그인 세션 삭제 문제',
+  problem: {
+    summary: '특정 기능을 위해 쿠키를 초기화하는 과정에서 로그인 세션까지 함께 삭제되는 문제 발생',
+    causes: [
+      '모든 쿠키를 일괄 삭제하는 로직으로 JSESSIONID(세션 쿠키)까지 삭제됨',
+      '기능별 쿠키 구분 없이 처리 → 쿠키 스코프 설계 문제 + 필터링 부재',
+    ],
+    results: ['로그인 상태가 유지되지 않음', '사용자 자동 로그아웃으로 경험 저하'],
+  },
+  solution: {
+    summary: '팀 내에서 해당 문제의 원인을 함께 분석하고, 특정 쿠키(roomBoard)만 선택적으로 삭제하도록 개선 방향을 제안하여 적용했습니다.',
+    before: `Cookie[] cookies = request.getCookies();\nif (cookies != null) {\n  for (Cookie c : cookies) {\n    if (cookieName.equals(c.getName())) {\n      viewed = c.getValue();\n    }\n    c.setMaxAge(0);      // 모든 쿠키 삭제\n    c.setPath("/");\n    response.addCookie(c);\n  }\n}`,
+    after: `Cookie[] cookies = request.getCookies();\nif (cookies != null) {\n  for (Cookie c : cookies) {\n    if (cookieName.equals(c.getName())) {\n      viewed = c.getValue();\n    } else if (c.getName().contains("roomBoard")) {\n      c.setMaxAge(0);  // roomBoard 쿠키만 삭제\n      c.setPath("/");\n      response.addCookie(c);\n    }\n  }\n}`,
+  },
+  improvements: [
+    '선택적 쿠키 삭제로 세션 쿠키 보호',
+    '쿠키 역할 기반 분리로 관리 구조 개선',
+    '로그인 세션 정상 유지 및 불필요한 로그아웃 해결',
+  ],
+}
+
+const PDF_PATH = '/assets/pdf/BibleProject.pdf'
+
+const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => void }) => {
+  const isTechStack = label === '기술 스택'
+  const isMyTask = label === '담당 업무'
+  const isPdf = label === '발표 자료'
+  const isTrouble = label === '트러블슈팅'
+
+  const isWide = isTechStack || isPdf || isTrouble
+
+  return (
+    <AnimatePresence>
       <motion.div
-        className="bg-[#111] border border-white/20 rounded-2xl p-8 md:p-10 flex flex-col items-center gap-4 max-w-xs md:max-w-sm w-full mx-4"
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.85, opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3 py-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
       >
-        <p className="text-[#61BA91] font-bold text-sm md:text-base" style={orbitron}>{label}</p>
-        <p className="text-white/60 text-xs md:text-sm text-center">곧 업데이트 예정입니다.</p>
-        <button
-          onClick={onClose}
-          className="mt-2 px-5 py-2 text-xs font-bold rounded-full bg-[#61BA91] text-black hover:bg-[#4fa07a] transition-colors cursor-pointer"
-          style={orbitron}
+        <motion.div
+          className={[
+            'bg-[#111] border border-white/20 rounded-2xl p-6 md:p-10 flex flex-col gap-5 w-full max-h-[90vh] overflow-y-auto',
+            isWide ? 'max-w-3xl' : 'max-w-md md:max-w-lg',
+          ].join(' ')}
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.85, opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={(e) => e.stopPropagation()}
         >
-          닫기
-        </button>
+          <div className="flex items-center justify-between">
+            <p className="text-[#61BA91] font-bold text-base md:text-lg" style={orbitron}>{label}</p>
+            <button
+              onClick={onClose}
+              className="text-white/40 hover:text-white transition-colors cursor-pointer"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {isTechStack && (
+            <div className="flex flex-col gap-5">
+              {techStack.map(({ label: category, items }) => (
+                <div key={category}>
+                  <p className="text-[#EFF1C5]/40 text-xs font-bold mb-2" style={orbitron}>{category}</p>
+                  <div className="flex flex-wrap gap-3">
+                    {items.map(({ name, logo, invert }) => (
+                      <div key={name} className="flex flex-col items-center gap-1.5 bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-20">
+                        <img
+                          src={logo}
+                          alt={name}
+                          className="w-9 h-9 object-contain"
+                          style={invert ? { filter: 'invert(1)' } : undefined}
+                        />
+                        <span className="text-[#EFF1C5]/70 text-[10px] text-center leading-tight">{name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {isMyTask && (
+            <ul className="flex flex-col gap-3">
+              {myTasks.map((task, i) => (
+                <li key={i} className="flex gap-2 text-white/80 text-sm md:text-base">
+                  <span className="text-[#61BA91] shrink-0">✓</span>{task}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {isPdf && (
+            <>
+              <iframe
+                src={PDF_PATH}
+                className="w-full rounded-xl border border-white/10"
+                style={{ height: '60vh' }}
+                title="발표 자료"
+              />
+              <a
+                href={PDF_PATH}
+                download="자격증의바이블_발표자료.pdf"
+                className="self-start flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+                style={orbitron}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                </svg>
+                다운로드
+              </a>
+            </>
+          )}
+
+          {isTrouble && (
+            <div className="flex flex-col gap-4">
+              {/* 문제 상황 */}
+              <div className="bg-red-500/10 border border-red-400/30 rounded-xl px-5 py-4">
+                <p className="text-red-400 font-extrabold text-sm mb-2" style={orbitron}>문제 상황</p>
+                <p className="text-white/80 text-sm md:text-base mb-3">{troubleshooting.problem.summary}</p>
+                <ul className="space-y-1.5">
+                  {troubleshooting.problem.causes.map((c, i) => (
+                    <li key={i} className="flex gap-2 text-red-300/70 text-xs md:text-sm">
+                      <span className="shrink-0">·</span>{c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 발생 결과 */}
+              <div className="bg-white/5 border border-white/10 rounded-xl px-5 py-4">
+                <p className="text-white font-extrabold text-sm mb-2" style={orbitron}>발생 결과</p>
+                <ul className="space-y-1.5">
+                  {troubleshooting.problem.results.map((r, i) => (
+                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-xs md:text-sm">
+                      <span className="shrink-0">·</span>{r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 해결 방법 */}
+              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-5 py-4">
+                <p className="text-[#61BA91] font-extrabold text-sm mb-2" style={orbitron}>해결 방법</p>
+                <p className="text-white/80 text-sm md:text-base mb-3">{troubleshooting.solution.summary}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="min-w-0">
+                    <p className="text-red-400 text-xs font-bold mb-1.5" style={orbitron}>Before</p>
+                    <pre className="bg-black/50 border border-red-400/30 rounded-lg px-3 py-2.5 text-red-300/80 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
+                      <code>{troubleshooting.solution.before}</code>
+                    </pre>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[#61BA91] text-xs font-bold mb-1.5" style={orbitron}>After</p>
+                    <pre className="bg-black/50 border border-[#61BA91]/30 rounded-lg px-3 py-2.5 text-[#61BA91]/90 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
+                      <code>{troubleshooting.solution.after}</code>
+                    </pre>
+                  </div>
+                </div>
+              </div>
+
+              {/* 핵심 개선 */}
+              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-5 py-4">
+                <p className="text-[#EFF1C5] font-extrabold text-sm mb-2" style={orbitron}>핵심 개선</p>
+                <ul className="space-y-1.5">
+                  {troubleshooting.improvements.map((item, i) => (
+                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-xs md:text-sm">
+                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {!isTechStack && !isMyTask && !isPdf && !isTrouble && (
+            <p className="text-white/60 text-xs md:text-sm text-center">곧 업데이트 예정입니다.</p>
+          )}
+
+        </motion.div>
       </motion.div>
-    </motion.div>
-  </AnimatePresence>
-)
+    </AnimatePresence>
+  )
+}
 
 const CertificationBibleSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
@@ -111,13 +320,39 @@ const CertificationBibleSection = () => {
             <div className="flex flex-col gap-3 w-full">
               <h2 className="text-white font-bold text-lg md:text-2xl" style={orbitron}>자격증의 바이블 (자바)</h2>
               <p className="text-white text-[10px] md:text-xs font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
-              <ul className="text-[#EFF1C5]/70 text-[10px] md:text-xs space-y-1.5 mt-1">
-                {description.map((item, i) => (
-                  <li key={i} className="flex gap-2"><span className="text-[#EFF1C5] shrink-0">—</span>{item}</li>
-                ))}
-              </ul>
+
+              {/* 목적 */}
+              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-3 py-2 mt-1">
+                <p className="text-[#61BA91] font-extrabold text-xs md:text-sm mb-1" style={orbitron}>▸ 목적</p>
+                <p className="text-[#EFF1C5]/80 text-[9px] md:text-xs">{projectInfo.purpose}</p>
+              </div>
+
+              {/* 목표 */}
+              <div className="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
+                <p className="text-white font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 목표</p>
+                <ul className="space-y-1">
+                  {projectInfo.goals.map((item, i) => (
+                    <li key={i} className="flex gap-1.5 text-[#EFF1C5]/70 text-[9px] md:text-xs">
+                      <span className="text-[#EFF1C5]/40 shrink-0">·</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 성과 */}
+              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-3 py-2">
+                <p className="text-[#EFF1C5] font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 성과</p>
+                <ul className="space-y-1">
+                  {projectInfo.achievements.map((item, i) => (
+                    <li key={i} className="flex gap-1.5 text-[#EFF1C5]/70 text-[9px] md:text-xs">
+                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* 상세 버튼 */}
-              <div className="flex flex-wrap gap-2 mt-2 pb-2">
+              <div className="flex flex-wrap gap-2 mt-1 pb-2">
                 {detailButtons.map(btn => (
                   <button key={btn} onClick={() => setActiveModal(btn)}
                     className="px-3 py-1 text-[9px] md:text-xs font-extrabold rounded-xl border-2 border-[#EFF1C5]/50 text-[#EFF1C5] hover:border-[#EFF1C5] hover:bg-[#EFF1C5]/10 transition-colors cursor-pointer"
@@ -171,11 +406,37 @@ const CertificationBibleSection = () => {
             <div className="flex flex-col gap-4 flex-1 max-w-lg xl:max-w-xl">
               <h2 className="text-white font-bold text-2xl xl:text-4xl" style={orbitron}>자격증의 바이블 (자바)</h2>
               <p className="text-white text-sm xl:text-base font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
-              <ul className="text-[#EFF1C5]/70 text-sm xl:text-base space-y-2">
-                {description.map((item, i) => (
-                  <li key={i} className="flex gap-2"><span className="text-[#EFF1C5] shrink-0">—</span>{item}</li>
-                ))}
-              </ul>
+
+              {/* 목적 */}
+              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-4 py-2.5">
+                <p className="text-[#61BA91] font-extrabold text-sm xl:text-base mb-1" style={orbitron}>▸ 목적</p>
+                <p className="text-[#EFF1C5]/80 text-sm xl:text-base">{projectInfo.purpose}</p>
+              </div>
+
+              {/* 목표 */}
+              <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
+                <p className="text-white font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 목표</p>
+                <ul className="space-y-1.5">
+                  {projectInfo.goals.map((item, i) => (
+                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-sm xl:text-base">
+                      <span className="text-[#EFF1C5]/40 shrink-0">·</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 성과 */}
+              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-4 py-2.5">
+                <p className="text-[#EFF1C5] font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 성과</p>
+                <ul className="space-y-1.5">
+                  {projectInfo.achievements.map((item, i) => (
+                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-sm xl:text-base">
+                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* 상세 버튼 */}
               <div className="flex gap-2 flex-wrap mt-1">
                 {detailButtons.map(btn => (
@@ -194,7 +455,7 @@ const CertificationBibleSection = () => {
       </SectionCard>
 
       {/* 모달 */}
-      {activeModal && <ComingSoonModal label={activeModal} onClose={() => setActiveModal(null)} />}
+      {activeModal && <DetailModal label={activeModal} onClose={() => setActiveModal(null)} />}
     </>
   )
 }
