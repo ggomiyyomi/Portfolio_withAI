@@ -204,11 +204,13 @@ const troubleshootings = [
 ]
 
 const PDF_PATH = '/assets/pdf/PopspotProject.pdf'
+const VIDEO_EMBED = 'https://www.youtube.com/embed/DIHc5RcVmME'
 
 /** 상세 모달 */
 const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => void }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [activeTask, setActiveTask] = useState<number | null>(null)
+  const [mediaTab, setMediaTab] = useState<'pdf' | 'video'>('pdf')
 
   const isTechStack = label === '기술 스택'
   const isMyTask = label === '담당 업무'
@@ -373,25 +375,62 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
           )}
 
           {isPdf && (
-            <>
-              <iframe
-                src={PDF_PATH}
-                className="w-full rounded-xl border border-white/10"
-                style={{ height: '60vh' }}
-                title="발표 자료"
-              />
-              <a
-                href={PDF_PATH}
-                download="Popspot_발표자료.pdf"
-                className="self-start flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
-                style={orbitron}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-                </svg>
-                다운로드
-              </a>
-            </>
+            <div className="flex flex-col gap-4">
+              {/* 탭 버튼 */}
+              <div className="flex gap-2">
+                {(['pdf', 'video'] as const).map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setMediaTab(tab)}
+                    className={[
+                      'px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-lg border transition-colors cursor-pointer',
+                      mediaTab === tab
+                        ? 'border-[#61BA91] bg-[#61BA91]/20 text-[#61BA91]'
+                        : 'border-white/20 text-white/50 hover:border-white/40 hover:text-white/70',
+                    ].join(' ')}
+                    style={orbitron}
+                  >
+                    {tab === 'pdf' ? 'PDF' : '시연 영상'}
+                  </button>
+                ))}
+              </div>
+
+              {/* PDF */}
+              {mediaTab === 'pdf' && (
+                <>
+                  <iframe
+                    src={PDF_PATH}
+                    className="w-full rounded-xl border border-white/10"
+                    style={{ height: '60vh' }}
+                    title="발표 자료"
+                  />
+                  <a
+                    href={PDF_PATH}
+                    download="Popspot_발표자료.pdf"
+                    className="self-start flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+                    style={orbitron}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    다운로드
+                  </a>
+                </>
+              )}
+
+              {/* 시연 영상 */}
+              {mediaTab === 'video' && (
+                <div className="w-full rounded-xl overflow-hidden border border-white/10 bg-black" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    src={VIDEO_EMBED}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Popspot 시연 영상"
+                  />
+                </div>
+              )}
+            </div>
           )}
 
           {isTrouble && (
