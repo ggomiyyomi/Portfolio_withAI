@@ -7,6 +7,7 @@ import { useAppStore } from "@/store";
  */
 const LandingPage = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
+  const mode = useAppStore((s) => s.mode)
 
   return (
     <main
@@ -37,7 +38,7 @@ const LandingPage = () => {
           PORTFOLIO
         </motion.h1>
 
-        <p className="mt-2 text-sm sm:text-lg text-white/60">
+        <p className={`mt-2 text-sm sm:text-lg ${mode === 'light' ? 'text-black/70' : 'text-white/80'}`}>
           A space where ideas come to life
         </p>
 

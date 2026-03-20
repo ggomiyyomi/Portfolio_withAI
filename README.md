@@ -1,4 +1,4 @@
-# 🧑‍💻 AI Portfolio Website
+# 🧑‍💻 Portfolio Website
 
 ## 📌 프로젝트 소개
 
@@ -9,18 +9,25 @@ Blender를 이용한 3D 애니메이션과 인터랙티브 UI를 활용한
 
 <br />
 
+<div align="center">
+  <img src="public/assets/images/LandingIMG.png" alt="Landing" width="48%" />
+  <img src="public/assets/images/ColorThemeIMG.png" alt="Color Theme" width="48%" />
+</div>
+
+<br />
+
 ## 🛠 Tech Stack
 
-| 분류       | 기술           |
-| ---------- | -------------- |
-| Language   | TypeScript     |
-| Framework  | React 19       |
-| Build Tool | Vite           |
-| Styling    | Tailwind CSS 4 |
-| State      | Zustand        |
-| Animation  | Framer Motion  |
-| Email      | EmailJS        |
-| Deployment | Vercel         |
+| 분류       | 기술                                                                                                                                    |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Language   | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="18" /> TypeScript        |
+| Framework  | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="18" /> React 19                    |
+| Build Tool | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg" width="18" /> Vite                          |
+| Styling    | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" width="18" /> Tailwind CSS 4  |
+| State      | 🐻 Zustand                                                                                                                              |
+| Animation  | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" width="18" /> Framer Motion |
+| Email      | 📧 EmailJS                                                                                                                              |
+| Deployment | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" width="18" /> Vercel                    |
 
 <br />
 
@@ -29,9 +36,9 @@ Blender를 이용한 3D 애니메이션과 인터랙티브 UI를 활용한
 ```
 src/
 ├── components/
-│   ├── ui/          # 재사용 UI 컴포넌트 (SectionCard, ThemeSwitcher, ProfileBlur)
+│   ├── ui/          # 재사용 UI 컴포넌트
 │   └── sections/    # 페이지별 섹션 컴포넌트
-├── pages/           # 라우팅 단위 페이지 (Landing, Home, Projects 등)
+├── pages/           # 라우팅 단위 페이지
 ├── store/           # Zustand 전역 상태
 ├── hooks/           # 커스텀 훅
 └── index.css        # Tailwind 4 테마 변수 정의
@@ -42,6 +49,9 @@ src/
 ## 🗂 페이지 구성
 
 ### Landing
+
+- 3D 툴 **Blender**로 직접 제작한 애니메이션 사용
+- 제작 참고: [SENS 3D](https://www.youtube.com/@sens_3d) (YouTube)
 
 ### Home
 
@@ -100,7 +110,7 @@ src/
 - Framer Motion `layoutId` 기반 부드러운 카드 이동 애니메이션
 - 중앙 카드 강조 (양쪽 카드 opacity/scale 감소)
 
-### 3. 이미지 슬라이드쇼 (FakeHunters)
+### 3. 이미지 슬라이드쇼
 
 - 담당 업무 모달 내 이전/다음 버튼 + 닷 인디케이터 슬라이드쇼
 
