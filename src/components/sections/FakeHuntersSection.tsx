@@ -341,13 +341,13 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="min-w-0">
                       <p className="text-red-400 text-xs font-bold mb-1.5" style={orbitron}>Before</p>
-                      <pre className="bg-black/50 border border-red-400/30 rounded-lg px-3 py-2.5 text-red-300/80 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
+                      <pre className="bg-surface border border-red-400/50 rounded-lg px-3 py-2.5 text-red-500 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
                         <code>{ts.solution.before}</code>
                       </pre>
                     </div>
                     <div className="min-w-0">
                       <p className="text-primary text-xs font-bold mb-1.5" style={orbitron}>After</p>
-                      <pre className="bg-black/50 border border-primary/30 rounded-lg px-3 py-2.5 text-primary/90 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
+                      <pre className="bg-surface border border-primary/50 rounded-lg px-3 py-2.5 text-primary text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
                         <code>{'after' in ts.solution ? ts.solution.after : ''}</code>
                       </pre>
                     </div>
