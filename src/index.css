@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @theme {
+  --color-primary: #61BA91;
+  --color-secondary: #EFF1C5;
+  --color-bg: #000000;
+  --color-surface: #111111;
+  --color-text: #ffffff;
+
   --animate-marquee: marquee 30s linear infinite;
   --animate-marquee-reverse: marquee-reverse 30s linear infinite;
 
@@ -13,6 +19,49 @@
     0%   { transform: translateX(-33.333%); }
     100% { transform: translateX(0); }
   }
+}
+
+[data-mode="light"] {
+  --color-bg: #f1f3f5;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+  --color-primary: #2d7058;
+  --color-secondary: #4a4860;
+}
+
+/* Contact 섹션 — 항상 현재 모드의 반대 */
+.mode-inverted {
+  --color-bg: #f1f3f5;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}
+[data-mode="light"] .mode-inverted {
+  --color-bg: #000000;
+  --color-surface: #111111;
+  --color-text: #ffffff;
+}
+[data-mode="light"] .mode-inverted .icon-invert {
+  filter: invert(1);
+}
+
+[data-theme="blue"] {
+  --color-primary: #5B8DB8;
+  --color-secondary: #EFF1C5;
+}
+
+[data-theme="warm"] {
+  --color-primary: #C87C50;
+  --color-secondary: #EFF1C5;
+}
+
+[data-mode="light"][data-theme="blue"] {
+  --color-primary: #245a8a;
+  --color-secondary: #4a4860;
+}
+
+[data-mode="light"][data-theme="warm"] {
+  --color-primary: #8a4428;
+  --color-secondary: #4a4860;
 }
 
 html, body {
@@ -44,16 +93,16 @@ html, body {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(97, 186, 145, 0.5);
+    background: color-mix(in srgb, var(--color-primary) 50%, transparent);
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(97, 186, 145, 0.85);
+    background: color-mix(in srgb, var(--color-primary) 85%, transparent);
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(97, 186, 145, 0.5) transparent;
+    scrollbar-color: color-mix(in srgb, var(--color-primary) 50%, transparent) transparent;
   }
 }

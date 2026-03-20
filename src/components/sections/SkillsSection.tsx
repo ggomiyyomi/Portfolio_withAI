@@ -72,7 +72,7 @@ const SkillItem = ({ skill }: { skill: Skill }) => (
           if (parent && !parent.querySelector('span')) {
             const span = document.createElement('span')
             span.textContent = skill.label[0]
-            span.className = 'text-lg font-bold text-[#61BA91]'
+            span.className = 'text-lg font-bold text-primary'
             parent.appendChild(span)
           }
         }}
@@ -113,11 +113,11 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white gap-15 md:gap-20 overflow-hidden py-16 md:py-20 lg:py-24"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-bg text-text gap-15 md:gap-20 overflow-hidden py-16 md:py-20 lg:py-24"
     >
       {/* SKILLS 제목 */}
       <h2
-        className="text-4xl md:text-5xl font-bold tracking-[0.1em] text-white"
+        className="text-4xl md:text-5xl font-bold tracking-[0.1em] text-text"
         style={{ fontFamily: 'Orbitron, sans-serif' }}
       >
         SKILLS

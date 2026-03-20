@@ -9,6 +9,10 @@ interface AppState {
   setCurrentPage: (page: AppState['currentPage']) => void
   projectsActiveIndex: number
   setProjectsActiveIndex: (index: number) => void
+  theme: 'green' | 'blue' | 'warm'
+  setTheme: (theme: 'green' | 'blue' | 'warm') => void
+  mode: 'dark' | 'light'
+  setMode: (mode: 'dark' | 'light') => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -16,4 +20,8 @@ export const useAppStore = create<AppState>((set) => ({
   setCurrentPage: (page) => set({ currentPage: page }),
   projectsActiveIndex: 0,
   setProjectsActiveIndex: (index) => set({ projectsActiveIndex: index }),
+  theme: 'green',
+  setTheme: (theme) => set({ theme }),
+  mode: 'dark',
+  setMode: (mode) => set({ mode }),
 }))

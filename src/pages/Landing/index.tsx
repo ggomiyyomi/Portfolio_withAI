@@ -10,12 +10,12 @@ const LandingPage = () => {
 
   return (
     <main
-      className="relative w-full h-screen overflow-hidden bg-black hover:cursor-pointer"
+      className="relative w-full h-screen overflow-hidden bg-bg hover:cursor-pointer"
       onClick={() => setCurrentPage('home')}
     >
 
       {/* Center content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-text">
 
         {/* Video */}
         <video

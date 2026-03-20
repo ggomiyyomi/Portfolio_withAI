@@ -128,7 +128,7 @@ const CarouselCards = ({
                     transition={{ duration: 0.2 }}
                   >
                     <span
-                      className="text-white font-bold text-xs md:text-sm lg:text-base text-center px-3 leading-snug truncate w-full"
+                      className="text-text font-bold text-xs md:text-sm lg:text-base text-center px-3 leading-snug truncate w-full"
                       style={orbitron}
                     >
                       {project.name}
@@ -160,17 +160,17 @@ const ProjectsSection = () => {
       id="projects"
       nav={
         <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
-          <div className="text-[#61BA91] cursor-pointer">Projects</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
+          <div className="text-primary cursor-pointer">Projects</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
         </div>
       }
     >
 
       {/* ══ 모바일 레이아웃 (< lg) ══ */}
       <div className="lg:hidden flex flex-col items-center justify-center h-140 md:h-160 px-5 md:px-8 pt-16 pb-16 gap-8 md:gap-10 relative z-10">
-        <p className="text-white font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
+        <p className="text-text font-bold text-xl md:text-3xl" style={orbitron}>Projects Showcase</p>
         <div className="md:hidden w-full">
           <CarouselCards {...carouselProps} gapClass="gap-2" centerWidth="38%" sideWidth="22%" />
         </div>
@@ -182,7 +182,7 @@ const ProjectsSection = () => {
       {/* ══ 데스크탑 레이아웃 (lg+) ══ */}
       <div className="hidden lg:block lg:h-132.5 xl:h-155 2xl:h-175">
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-20 px-16 z-10">
-          <p className="text-white font-bold text-5xl" style={orbitron}>Projects Showcase</p>
+          <p className="text-text font-bold text-5xl" style={orbitron}>Projects Showcase</p>
           <CarouselCards {...carouselProps} gapClass="gap-6" centerWidth="22%" sideWidth="16%" />
         </div>
       </div>

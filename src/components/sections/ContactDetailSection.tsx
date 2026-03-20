@@ -22,11 +22,11 @@ const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  as string
 
 /** Name/Email 필드 스타일 — 알약형 */
 const pillInputClass =
-  'w-full bg-[rgba(180,180,180,0.35)] h-7 md:h-9 rounded-full px-3 text-[10px] md:text-xs text-white placeholder:text-white/70 focus:outline-none'
+  'w-full bg-[rgba(180,180,180,0.35)] h-7 md:h-9 rounded-full px-3 text-[10px] md:text-xs text-text placeholder:text-text/70 focus:outline-none'
 
 /** Message 필드 스타일 — 둥근 사각형 */
 const messageClass =
-  'w-full bg-[rgba(100,100,100,0.45)] h-20 md:h-32 lg:h-48 rounded-[10px] md:rounded-[14px] px-3 md:px-4 py-2 md:py-3 text-[10px] md:text-xs text-white placeholder:text-white/70 focus:outline-none resize-none'
+  'w-full bg-[rgba(100,100,100,0.45)] h-20 md:h-32 lg:h-48 rounded-[10px] md:rounded-[14px] px-3 md:px-4 py-2 md:py-3 text-[10px] md:text-xs text-text placeholder:text-text/70 focus:outline-none resize-none'
 
 const ContactDetailSection = () => {
   const setCurrentPage = useAppStore((s) => s.setCurrentPage)
@@ -56,26 +56,26 @@ const ContactDetailSection = () => {
 
   const nav = (
     <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
-      <div className="text-[#61BA91] cursor-pointer">Contact</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
+      <div className="text-primary cursor-pointer">Contact</div>
     </div>
   )
 
   /** 좌측: 타이틀 + 프로필 정보 */
   const leftContent = (
     <div className="flex flex-col gap-4 md:gap-6">
-      <h2 className="text-white font-bold text-xl md:text-3xl lg:text-5xl" style={orbitron}>
+      <h2 className="text-text font-bold text-xl md:text-3xl lg:text-5xl" style={orbitron}>
         Contact ME
       </h2>
       <div className="flex items-center gap-2 md:gap-3">
-        <div className="w-9 h-9 md:w-12 md:h-12 lg:w-20 lg:h-20 rounded-full overflow-hidden shrink-0 border-2 border-[#61BA91]">
+        <div className="w-9 h-9 md:w-12 md:h-12 lg:w-20 lg:h-20 rounded-full overflow-hidden shrink-0 border-2 border-primary">
           <img src="/assets/images/Profile.JPG" alt="Profile" className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col gap-0.5" style={orbitron}>
-          <p className="text-[#61BA91] font-bold text-[10px] md:text-xs lg:text-base">Hee-Jeong Seo</p>
-          <p className="text-white/60 text-[9px] md:text-[10px] lg:text-sm">heejung9965@naver.com</p>
+          <p className="text-primary font-bold text-[10px] md:text-xs lg:text-base">Hee-Jeong Seo</p>
+          <p className="text-text/60 text-[9px] md:text-[10px] lg:text-sm">heejung9965@naver.com</p>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@ const ContactDetailSection = () => {
 
   /** 우측: 이메일 폼 */
   const rightContent = (
-    <form onSubmit={handleSubmit} className="bg-white/5 rounded-[20px] p-5 flex flex-col gap-3 w-full">
+    <form onSubmit={handleSubmit} className="bg-text/5 rounded-[20px] p-5 flex flex-col gap-3 w-full">
       <input
         name="name"
         type="text"
@@ -117,12 +117,12 @@ const ContactDetailSection = () => {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-28 h-7 md:w-36 md:h-8 bg-[#61BA91] text-white font-bold text-[10px] md:text-xs rounded-full hover:bg-[#4fa07a] transition-colors disabled:opacity-50 cursor-pointer"
+          className="w-28 h-7 md:w-36 md:h-8 bg-primary text-text font-bold text-[10px] md:text-xs rounded-full hover:bg-primary/80 transition-colors disabled:opacity-50 cursor-pointer"
           style={orbitron}
         >
           {status === 'sending' ? '전송 중...' : '이메일 전송'}
         </button>
-        {status === 'success' && <p className="text-[#61BA91] text-xs">이메일이 전송되었습니다!</p>}
+        {status === 'success' && <p className="text-primary text-xs">이메일이 전송되었습니다!</p>}
         {status === 'error'   && <p className="text-red-400 text-xs">전송에 실패했습니다. 다시 시도해주세요.</p>}
       </div>
     </form>

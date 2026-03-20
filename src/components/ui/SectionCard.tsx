@@ -41,7 +41,7 @@ const SectionCard = ({ children, nav, id, clearProfile = false, profileOpacity }
   return (
     <section
       id={id}
-      className="min-h-screen w-full bg-black flex items-center justify-center px-6 py-4 md:px-10 md:py-8 lg:px-14 lg:py-12"
+      className="min-h-screen w-full bg-bg flex items-center justify-center px-6 py-4 md:px-10 md:py-8 lg:px-14 lg:py-12"
     >
       <div className="max-w-350 w-full relative">
 
@@ -53,46 +53,46 @@ const SectionCard = ({ children, nav, id, clearProfile = false, profileOpacity }
 
           {/* ══ 모바일 코너 정보 (lg 미만) ══ */}
           {/* 상단: Birth / Gender — children 위에 렌더되도록 z-10 */}
-          <div className="lg:hidden absolute top-5 left-5 flex flex-col gap-0.5 text-white text-[10px] md:text-xs z-10" style={orbitron}>
-            <p><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
-            <p><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
+          <div className="lg:hidden absolute top-5 left-5 flex flex-col gap-0.5 text-text text-[10px] md:text-xs z-10" style={orbitron}>
+            <p><span className="text-primary">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
+            <p><span className="text-primary">Gender ~ </span> <span className="font-bold">female</span></p>
           </div>
 
           {/* 하단 좌: Github / Email */}
-          <div className="lg:hidden absolute bottom-5 left-5 flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] z-10" style={orbitron}>
-            <p><span className="text-[#61ba91]">Github ~ </span><span className="font-bold">ggomiyyomi</span></p>
-            <p><span className="text-[#61ba91]">Email ~ </span><span className="font-bold">heejung9865@naver.com</span></p>
+          <div className="lg:hidden absolute bottom-5 left-5 flex flex-col gap-0.5 text-text text-[9px] md:text-[11px] z-10" style={orbitron}>
+            <p><span className="text-primary">Github ~ </span><span className="font-bold">ggomiyyomi</span></p>
+            <p><span className="text-primary">Email ~ </span><span className="font-bold">heejung9865@naver.com</span></p>
           </div>
 
           {/* 하단 우: Education / Location */}
-          <div className="lg:hidden absolute bottom-5 right-5 flex flex-col gap-0.5 text-white text-[9px] md:text-[11px] text-right z-10" style={orbitron}>
-            <p><span className="font-bold">Expected [08, 26]</span><span className="text-[#61ba91]"> ~ Education</span></p>
-            <p><span className="font-bold">Incheon, Korea</span><span className="text-[#61ba91]"> ~ Location</span></p>
+          <div className="lg:hidden absolute bottom-5 right-5 flex flex-col gap-0.5 text-text text-[9px] md:text-[11px] text-right z-10" style={orbitron}>
+            <p><span className="font-bold">Expected [08, 26]</span><span className="text-primary"> ~ Education</span></p>
+            <p><span className="font-bold">Incheon, Korea</span><span className="text-primary"> ~ Location</span></p>
           </div>
 
           {/* ══ 데스크탑 코너 정보 (lg 이상) ══ */}
           {/* 상단 좌: Birth / Gender */}
-          <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-1 text-white text-xs z-20" style={orbitron}>
-            <p className="mb-0"><span className="text-[#61ba91]">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
-            <p className="mb-0"><span className="text-[#61ba91]">Gender ~ </span> <span className="font-bold">female</span></p>
+          <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-1 text-text text-xs z-20" style={orbitron}>
+            <p className="mb-0"><span className="text-primary">Birth </span> ~ <span className="font-bold">00.11.21</span></p>
+            <p className="mb-0"><span className="text-primary">Gender ~ </span> <span className="font-bold">female</span></p>
           </div>
 
           {/* 하단 우: Graduation / Location */}
-          <div className="hidden lg:flex absolute bottom-8 right-8 flex-col gap-1 text-white text-xs text-right z-20" style={orbitron}>
+          <div className="hidden lg:flex absolute bottom-8 right-8 flex-col gap-1 text-text text-xs text-right z-20" style={orbitron}>
             <p className="mb-0">
               <span className="font-bold">Expected Graduation: [08, 26]</span>
-              <span className="text-[#61ba91]"> ~ Education</span>
+              <span className="text-primary"> ~ Education</span>
             </p>
             <p className="mb-0">
               <span className="font-bold">Incheon, Korea</span>
-              <span className="text-[#61ba91]"> ~ Location</span>
+              <span className="text-primary"> ~ Location</span>
             </p>
           </div>
 
           {/* 하단 좌: Github / Email */}
-          <div className="hidden lg:flex absolute bottom-8 left-8 flex-col gap-1 text-white text-xs z-20" style={orbitron}>
-            <p className="mb-0"><span className="text-[#61ba91]">Github ~ </span>ggomiyyomi</p>
-            <p className="mb-0"><span className="text-[#61ba91]">Email ~ </span>heejung9865@naver.com</p>
+          <div className="hidden lg:flex absolute bottom-8 left-8 flex-col gap-1 text-text text-xs z-20" style={orbitron}>
+            <p className="mb-0"><span className="text-primary">Github ~ </span>ggomiyyomi</p>
+            <p className="mb-0"><span className="text-primary">Email ~ </span>heejung9865@naver.com</p>
           </div>
 
           <ProfileBlur blurAmount={clearProfile ? 0 : 40} opacity={resolvedOpacity} />

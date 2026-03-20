@@ -5,7 +5,7 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
  */
 const ProjectsPage = () => {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-bg text-text">
       <ProjectsSection />
     </main>
   )

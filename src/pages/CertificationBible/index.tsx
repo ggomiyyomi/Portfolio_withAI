@@ -1,7 +1,7 @@
 import CertificationBibleSection from '@/components/sections/CertificationBibleSection'
 
 const CertificationBiblePage = () => (
-  <main className="bg-black text-white">
+  <main className="bg-bg text-text">
     <CertificationBibleSection />
   </main>
 )

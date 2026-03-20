@@ -5,7 +5,7 @@ import ContactDetailSection from '@/components/sections/ContactDetailSection'
  */
 const ContactPage = () => {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-bg text-text">
       <ContactDetailSection />
     </main>
   )

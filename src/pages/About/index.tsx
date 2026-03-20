@@ -5,7 +5,7 @@ import AboutDetailSection from '@/components/sections/AboutDetailSection'
  */
 const AboutPage = () => {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-bg text-text">
       <AboutDetailSection />
     </main>
   )

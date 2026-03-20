@@ -7,7 +7,7 @@ import ContactSection from '@/components/sections/ContactSection'
  */
 const HomePage = () => {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-bg text-text">
       <AboutSection />
       <SkillsSection />
       <ContactSection />

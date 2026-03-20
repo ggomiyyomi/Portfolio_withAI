@@ -1,7 +1,7 @@
 import PopspotSection from '@/components/sections/PopspotSection'
 
 const PopspotPage = () => (
-  <main className="bg-black text-white">
+  <main className="bg-bg text-text">
     <PopspotSection />
   </main>
 )

@@ -114,7 +114,7 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
       >
         <motion.div
           className={[
-            'bg-[#111] border border-white/20 rounded-2xl p-6 md:p-10 flex flex-col gap-5 w-full max-h-[90vh] overflow-y-auto',
+            'bg-surface border border-text/20 rounded-2xl p-6 md:p-10 flex flex-col gap-5 w-full max-h-[90vh] overflow-y-auto',
             isWide ? 'max-w-3xl' : 'max-w-md md:max-w-lg',
           ].join(' ')}
           initial={{ scale: 0.85, opacity: 0 }}
@@ -124,10 +124,10 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between">
-            <p className="text-[#61BA91] font-bold text-base md:text-lg" style={orbitron}>{label}</p>
+            <p className="text-primary font-bold text-base md:text-lg" style={orbitron}>{label}</p>
             <button
               onClick={onClose}
-              className="text-white/40 hover:text-white transition-colors cursor-pointer"
+              className="text-text/40 hover:text-text transition-colors cursor-pointer"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -139,17 +139,17 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
             <div className="flex flex-col gap-5">
               {techStack.map(({ label: category, items }) => (
                 <div key={category}>
-                  <p className="text-[#EFF1C5]/40 text-xs font-bold mb-2" style={orbitron}>{category}</p>
+                  <p className="text-secondary/40 text-xs font-bold mb-2" style={orbitron}>{category}</p>
                   <div className="flex flex-wrap gap-3">
                     {items.map(({ name, logo, invert }) => (
-                      <div key={name} className="flex flex-col items-center gap-1.5 bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-20">
+                      <div key={name} className="flex flex-col items-center gap-1.5 bg-text/5 border border-text/10 rounded-xl px-4 py-3 w-20">
                         <img
                           src={logo}
                           alt={name}
                           className="w-9 h-9 object-contain"
                           style={invert ? { filter: 'invert(1)' } : undefined}
                         />
-                        <span className="text-[#EFF1C5]/70 text-[10px] text-center leading-tight">{name}</span>
+                        <span className="text-secondary/70 text-[10px] text-center leading-tight">{name}</span>
                       </div>
                     ))}
                   </div>
@@ -161,8 +161,8 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
           {isMyTask && (
             <ul className="flex flex-col gap-3">
               {myTasks.map((task, i) => (
-                <li key={i} className="flex gap-2 text-white/80 text-sm md:text-base">
-                  <span className="text-[#61BA91] shrink-0">✓</span>{task}
+                <li key={i} className="flex gap-2 text-text/80 text-sm md:text-base">
+                  <span className="text-primary shrink-0">✓</span>{task}
                 </li>
               ))}
             </ul>
@@ -172,14 +172,14 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
             <>
               <iframe
                 src={PDF_PATH}
-                className="w-full rounded-xl border border-white/10"
+                className="w-full rounded-xl border border-text/10"
                 style={{ height: '60vh' }}
                 title="발표 자료"
               />
               <a
                 href={PDF_PATH}
                 download="자격증의바이블_발표자료.pdf"
-                className="self-start flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+                className="self-start flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-primary text-primary hover:bg-primary hover:text-black transition-colors cursor-pointer"
                 style={orbitron}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
               {/* 문제 상황 */}
               <div className="bg-red-500/10 border border-red-400/30 rounded-xl px-5 py-4">
                 <p className="text-red-400 font-extrabold text-sm mb-2" style={orbitron}>문제 상황</p>
-                <p className="text-white/80 text-sm md:text-base mb-3">{troubleshooting.problem.summary}</p>
+                <p className="text-text/80 text-sm md:text-base mb-3">{troubleshooting.problem.summary}</p>
                 <ul className="space-y-1.5">
                   {troubleshooting.problem.causes.map((c, i) => (
                     <li key={i} className="flex gap-2 text-red-300/70 text-xs md:text-sm">
@@ -206,11 +206,11 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
               </div>
 
               {/* 발생 결과 */}
-              <div className="bg-white/5 border border-white/10 rounded-xl px-5 py-4">
-                <p className="text-white font-extrabold text-sm mb-2" style={orbitron}>발생 결과</p>
+              <div className="bg-text/5 border border-text/10 rounded-xl px-5 py-4">
+                <p className="text-text font-extrabold text-sm mb-2" style={orbitron}>발생 결과</p>
                 <ul className="space-y-1.5">
                   {troubleshooting.problem.results.map((r, i) => (
-                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-xs md:text-sm">
+                    <li key={i} className="flex gap-2 text-secondary/70 text-xs md:text-sm">
                       <span className="shrink-0">·</span>{r}
                     </li>
                   ))}
@@ -218,9 +218,9 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
               </div>
 
               {/* 해결 방법 */}
-              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-5 py-4">
-                <p className="text-[#61BA91] font-extrabold text-sm mb-2" style={orbitron}>해결 방법</p>
-                <p className="text-white/80 text-sm md:text-base mb-3">{troubleshooting.solution.summary}</p>
+              <div className="bg-primary/10 border border-primary/30 rounded-xl px-5 py-4">
+                <p className="text-primary font-extrabold text-sm mb-2" style={orbitron}>해결 방법</p>
+                <p className="text-text/80 text-sm md:text-base mb-3">{troubleshooting.solution.summary}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="min-w-0">
                     <p className="text-red-400 text-xs font-bold mb-1.5" style={orbitron}>Before</p>
@@ -229,8 +229,8 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
                     </pre>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[#61BA91] text-xs font-bold mb-1.5" style={orbitron}>After</p>
-                    <pre className="bg-black/50 border border-[#61BA91]/30 rounded-lg px-3 py-2.5 text-[#61BA91]/90 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
+                    <p className="text-primary text-xs font-bold mb-1.5" style={orbitron}>After</p>
+                    <pre className="bg-black/50 border border-primary/30 rounded-lg px-3 py-2.5 text-primary/90 text-[9px] md:text-[10px] lg:text-xs overflow-x-auto leading-relaxed">
                       <code>{troubleshooting.solution.after}</code>
                     </pre>
                   </div>
@@ -238,12 +238,12 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
               </div>
 
               {/* 핵심 개선 */}
-              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-5 py-4">
-                <p className="text-[#EFF1C5] font-extrabold text-sm mb-2" style={orbitron}>핵심 개선</p>
+              <div className="bg-secondary/5 border border-secondary/20 rounded-xl px-5 py-4">
+                <p className="text-secondary font-extrabold text-sm mb-2" style={orbitron}>핵심 개선</p>
                 <ul className="space-y-1.5">
                   {troubleshooting.improvements.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-xs md:text-sm">
-                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    <li key={i} className="flex gap-2 text-secondary/70 text-xs md:text-sm">
+                      <span className="text-primary shrink-0">✓</span>{item}
                     </li>
                   ))}
                 </ul>
@@ -252,7 +252,7 @@ const DetailModal = ({ label, onClose }: { label: DetailButton; onClose: () => v
           )}
 
           {!isTechStack && !isMyTask && !isPdf && !isTrouble && (
-            <p className="text-white/60 text-xs md:text-sm text-center">곧 업데이트 예정입니다.</p>
+            <p className="text-text/60 text-xs md:text-sm text-center">곧 업데이트 예정입니다.</p>
           )}
 
         </motion.div>
@@ -267,10 +267,10 @@ const CertificationBibleSection = () => {
 
   const nav = (
     <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
-      <div className="text-[#61BA91] cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
-      <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('home')}>Home</div>
+      <div className="text-primary cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
+      <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
     </div>
   )
 
@@ -288,7 +288,7 @@ const CertificationBibleSection = () => {
             <div className="w-full shrink-0">
               <button
                 onClick={() => setCurrentPage('projects')}
-                className="flex items-center text-[#EFF1C5]/60 hover:text-[#EFF1C5] transition-colors cursor-pointer"
+                className="flex items-center text-secondary/60 hover:text-secondary transition-colors cursor-pointer"
               >
                 <svg viewBox="0 0 1024 1024" className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="60">
                   <path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" />
@@ -313,39 +313,39 @@ const CertificationBibleSection = () => {
                   <span className="px-3 py-1.5 text-[9px] md:text-[11px] font-extrabold rounded-full border-2 border-white text-white bg-black/70 group-hover:bg-white group-hover:text-black transition-colors duration-200">View GITHUB</span>
                 </a>
               </div>
-              <p className="font-bold text-[#EFF1C5]/60 text-[9px] md:text-xs" style={orbitron}>2025.10.13 ~ 2025.10.18</p>
+              <p className="font-bold text-secondary/60 text-[9px] md:text-xs" style={orbitron}>2025.10.13 ~ 2025.10.18</p>
             </div>
 
             {/* 텍스트 */}
             <div className="flex flex-col gap-3 w-full">
-              <h2 className="text-white font-bold text-lg md:text-2xl" style={orbitron}>자격증의 바이블 (자바)</h2>
-              <p className="text-white text-[10px] md:text-xs font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
+              <h2 className="text-text font-bold text-lg md:text-2xl" style={orbitron}>자격증의 바이블 (자바)</h2>
+              <p className="text-text text-[10px] md:text-xs font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
 
               {/* 목적 */}
-              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-3 py-2 mt-1">
-                <p className="text-[#61BA91] font-extrabold text-xs md:text-sm mb-1" style={orbitron}>▸ 목적</p>
-                <p className="text-[#EFF1C5]/80 text-[9px] md:text-xs">{projectInfo.purpose}</p>
+              <div className="bg-primary/10 border border-primary/30 rounded-xl px-3 py-2 mt-1">
+                <p className="text-primary font-extrabold text-xs md:text-sm mb-1" style={orbitron}>▸ 목적</p>
+                <p className="text-secondary/80 text-[9px] md:text-xs">{projectInfo.purpose}</p>
               </div>
 
               {/* 목표 */}
-              <div className="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-                <p className="text-white font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 목표</p>
+              <div className="bg-text/5 border border-text/10 rounded-xl px-3 py-2">
+                <p className="text-text font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 목표</p>
                 <ul className="space-y-1">
                   {projectInfo.goals.map((item, i) => (
-                    <li key={i} className="flex gap-1.5 text-[#EFF1C5]/70 text-[9px] md:text-xs">
-                      <span className="text-[#EFF1C5]/40 shrink-0">·</span>{item}
+                    <li key={i} className="flex gap-1.5 text-secondary/70 text-[9px] md:text-xs">
+                      <span className="text-secondary/40 shrink-0">·</span>{item}
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* 성과 */}
-              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-3 py-2">
-                <p className="text-[#EFF1C5] font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 성과</p>
+              <div className="bg-secondary/5 border border-secondary/20 rounded-xl px-3 py-2">
+                <p className="text-secondary font-extrabold text-xs md:text-sm mb-1.5" style={orbitron}>▸ 성과</p>
                 <ul className="space-y-1">
                   {projectInfo.achievements.map((item, i) => (
-                    <li key={i} className="flex gap-1.5 text-[#EFF1C5]/70 text-[9px] md:text-xs">
-                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    <li key={i} className="flex gap-1.5 text-secondary/70 text-[9px] md:text-xs">
+                      <span className="text-primary shrink-0">✓</span>{item}
                     </li>
                   ))}
                 </ul>
@@ -355,7 +355,7 @@ const CertificationBibleSection = () => {
               <div className="flex flex-wrap gap-2 mt-1 pb-2">
                 {detailButtons.map(btn => (
                   <button key={btn} onClick={() => setActiveModal(btn)}
-                    className="px-3 py-1 text-[9px] md:text-xs font-extrabold rounded-xl border-2 border-[#EFF1C5]/50 text-[#EFF1C5] hover:border-[#EFF1C5] hover:bg-[#EFF1C5]/10 transition-colors cursor-pointer"
+                    className="px-3 py-1 text-[9px] md:text-xs font-extrabold rounded-xl border-2 border-secondary/50 text-secondary hover:border-secondary hover:bg-secondary/10 transition-colors cursor-pointer"
                     style={orbitron}>
                     {btn}
                   </button>
@@ -372,7 +372,7 @@ const CertificationBibleSection = () => {
           <div className="absolute top-24 left-8 z-20">
             <button
               onClick={() => setCurrentPage('projects')}
-              className="flex items-center gap-1.5 text-[#EFF1C5]/60 hover:text-[#EFF1C5] transition-colors cursor-pointer text-xs font-bold"
+              className="flex items-center gap-1.5 text-secondary/60 hover:text-secondary transition-colors cursor-pointer text-xs font-bold"
               style={orbitron}
             >
               <svg viewBox="0 0 1024 1024" className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="60">
@@ -399,39 +399,39 @@ const CertificationBibleSection = () => {
                   <span className="px-4 py-2 text-xs font-extrabold rounded-full border-2 border-white text-white bg-black/70 group-hover:bg-white group-hover:text-black transition-colors duration-200">View GITHUB</span>
                 </a>
               </div>
-              <p className="text-[#EFF1C5]/60 text-xs font-bold" style={orbitron}>2025.10.13 ~ 2025.10.18</p>
+              <p className="text-secondary/60 text-xs font-bold" style={orbitron}>2025.10.13 ~ 2025.10.18</p>
             </div>
 
             {/* 우측: 제목 + 설명 + 상세 버튼 */}
             <div className="flex flex-col gap-4 flex-1 max-w-lg xl:max-w-xl">
-              <h2 className="text-white font-bold text-2xl xl:text-4xl" style={orbitron}>자격증의 바이블 (자바)</h2>
-              <p className="text-white text-sm xl:text-base font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
+              <h2 className="text-text font-bold text-2xl xl:text-4xl" style={orbitron}>자격증의 바이블 (자바)</h2>
+              <p className="text-text text-sm xl:text-base font-bold">자격증 준비생들을 위한 정보 스터디 커뮤니티 통합 플랫폼</p>
 
               {/* 목적 */}
-              <div className="bg-[#61BA91]/10 border border-[#61BA91]/30 rounded-xl px-4 py-2.5">
-                <p className="text-[#61BA91] font-extrabold text-sm xl:text-base mb-1" style={orbitron}>▸ 목적</p>
-                <p className="text-[#EFF1C5]/80 text-sm xl:text-base">{projectInfo.purpose}</p>
+              <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-2.5">
+                <p className="text-primary font-extrabold text-sm xl:text-base mb-1" style={orbitron}>▸ 목적</p>
+                <p className="text-secondary/80 text-sm xl:text-base">{projectInfo.purpose}</p>
               </div>
 
               {/* 목표 */}
-              <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
-                <p className="text-white font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 목표</p>
+              <div className="bg-text/5 border border-text/10 rounded-xl px-4 py-2.5">
+                <p className="text-text font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 목표</p>
                 <ul className="space-y-1.5">
                   {projectInfo.goals.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-sm xl:text-base">
-                      <span className="text-[#EFF1C5]/40 shrink-0">·</span>{item}
+                    <li key={i} className="flex gap-2 text-secondary/70 text-sm xl:text-base">
+                      <span className="text-secondary/40 shrink-0">·</span>{item}
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* 성과 */}
-              <div className="bg-[#EFF1C5]/5 border border-[#EFF1C5]/20 rounded-xl px-4 py-2.5">
-                <p className="text-[#EFF1C5] font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 성과</p>
+              <div className="bg-secondary/5 border border-secondary/20 rounded-xl px-4 py-2.5">
+                <p className="text-secondary font-extrabold text-sm xl:text-base mb-2" style={orbitron}>▸ 성과</p>
                 <ul className="space-y-1.5">
                   {projectInfo.achievements.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-[#EFF1C5]/70 text-sm xl:text-base">
-                      <span className="text-[#61BA91] shrink-0">✓</span>{item}
+                    <li key={i} className="flex gap-2 text-secondary/70 text-sm xl:text-base">
+                      <span className="text-primary shrink-0">✓</span>{item}
                     </li>
                   ))}
                 </ul>
@@ -441,7 +441,7 @@ const CertificationBibleSection = () => {
               <div className="flex gap-2 flex-wrap mt-1">
                 {detailButtons.map(btn => (
                   <button key={btn} onClick={() => setActiveModal(btn)}
-                    className="px-3 py-1 text-sm font-extrabold rounded-xl border-2 border-[#EFF1C5]/50 text-[#EFF1C5] hover:border-[#EFF1C5] hover:bg-[#EFF1C5]/10 transition-colors cursor-pointer"
+                    className="px-3 py-1 text-sm font-extrabold rounded-xl border-2 border-secondary/50 text-secondary hover:border-secondary hover:bg-secondary/10 transition-colors cursor-pointer"
                     style={orbitron}>
                     {btn}
                   </button>

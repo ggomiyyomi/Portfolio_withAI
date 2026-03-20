@@ -8,6 +8,7 @@ import CertificationBiblePage from '@/pages/CertificationBible'
 import PopspotPage from '@/pages/Popspot'
 import FakeHuntersPage from '@/pages/FakeHunters'
 import { useAppStore } from '@/store'
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
 /**
  * 루트 App 컴포넌트
@@ -17,6 +18,8 @@ function App() {
   const currentPage = useAppStore((s) => s.currentPage)
 
   return (
+    <>
+    <ThemeSwitcher />
     <AnimatePresence mode="wait">
       {currentPage === 'landing' && (
         <motion.div
@@ -107,6 +110,7 @@ function App() {
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   )
 }
 

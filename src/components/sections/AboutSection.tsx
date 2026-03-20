@@ -28,10 +28,10 @@ const AboutSection = () => {
     <SectionCard
       nav={
         <div className="flex font-bold items-center gap-3 md:gap-5 lg:gap-8 text-[10px] md:text-sm lg:text-xl text-center whitespace-nowrap" style={orbitron}>
-          <div className="text-[#61ba91] cursor-pointer">Home</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
-          <div className="text-white hover:text-[#61ba91] transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
+          <div className="text-primary cursor-pointer">Home</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('projects')}>Projects</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('about')}>About</div>
+          <div className="text-text hover:text-primary transition-colors cursor-pointer" onClick={() => setCurrentPage('contact')}>Contact</div>
         </div>
       }
     >
@@ -42,13 +42,13 @@ const AboutSection = () => {
 
           {/* 텍스트 */}
           <div className="flex flex-col gap-2 min-w-0">
-            <p className="text-white text-xl md:text-3xl" style={orbitron}>Hi, I am</p>
-            <p className="font-bold text-white text-5xl md:text-7xl leading-none" style={orbitron}>LLM</p>
-            <div className="text-white space-y-1 md:space-y-3 mt-1">
+            <p className="text-text text-xl md:text-3xl" style={orbitron}>Hi, I am</p>
+            <p className="font-bold text-text text-5xl md:text-7xl leading-none" style={orbitron}>LLM</p>
+            <div className="text-text space-y-1 md:space-y-3 mt-1">
               {llmItems.map((item, i) => (
                 <div key={i}>
                   <p className="text-[10px] md:text-base font-bold">{item.letter} — {item.title}</p>
-                  <p className="hidden md:block text-xs md:text-sm text-white/60 mt-0.5">{item.desc}</p>
+                  <p className="hidden md:block text-xs md:text-sm text-text/60 mt-0.5">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -85,7 +85,7 @@ const AboutSection = () => {
             </div>
             <button
               onClick={() => setShowProfile(p => !p)}
-              className="px-3 py-1 text-[9px] md:text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+              className="px-3 py-1 text-[9px] md:text-xs font-bold rounded-full border border-primary text-primary hover:bg-primary hover:text-black transition-colors cursor-pointer"
               style={orbitron}
             >
               {showProfile ? 'View Laptop' : 'View Profile'}
@@ -102,15 +102,15 @@ const AboutSection = () => {
         <div className="absolute inset-0 flex items-center justify-center">
 
           <div className="absolute left-[14%] top-[23%] z-10">
-            <p className="text-white text-5xl" style={orbitron}>Hi, I am</p>
+            <p className="text-text text-5xl" style={orbitron}>Hi, I am</p>
           </div>
 
           <div className="absolute left-[22%] top-[33%] z-10">
-            <p className="font-bold text-white text-7xl" style={orbitron}>LLM</p>
+            <p className="font-bold text-text text-7xl" style={orbitron}>LLM</p>
           </div>
 
           <div className="absolute left-1/2 top-3/5 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className="text-white space-y-4 text-left">
+            <div className="text-text space-y-4 text-left">
               {llmItems.map((item, i) => (
                 <div key={i}>
                   <p className="mb-2 text-xl font-bold">{item.letter} — {item.title}</p>
@@ -150,7 +150,7 @@ const AboutSection = () => {
             </div>
             <button
               onClick={() => setShowProfile(p => !p)}
-              className="px-4 py-1.5 text-xs font-bold rounded-full border border-[#61BA91] text-[#61BA91] hover:bg-[#61BA91] hover:text-black transition-colors cursor-pointer"
+              className="px-4 py-1.5 text-xs font-bold rounded-full border border-primary text-primary hover:bg-primary hover:text-black transition-colors cursor-pointer"
               style={orbitron}
             >
               {showProfile ? 'View Laptop' : 'View Profile'}
