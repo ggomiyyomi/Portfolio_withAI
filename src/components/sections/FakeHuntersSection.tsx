@@ -69,13 +69,6 @@ const techStack = [
     ],
   },
   {
-    label: 'Infra',
-    items: [
-      { name: 'AWS', logo: `${d}/amazonwebservices/amazonwebservices-plain-wordmark.svg`, invert: true },
-      { name: 'Nginx', logo: `${d}/nginx/nginx-original.svg` },
-    ],
-  },
-  {
     label: '협업 / 개발',
     items: [
       { name: 'Git', logo: `${d}/git/git-original.svg` },
